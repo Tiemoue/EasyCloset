@@ -4,17 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_700"
     tools:context=".SignUpActivity">
 
+
     <TextView
-        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginEnd="0dp"
+        android:text="Easy Closet"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+
+    <EditText
+        android:id="@+id/etFirstname"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="67dp"
+        android:hint="First Name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/etSignUpLastname"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="341dp"
+        android:layout_marginEnd="68dp"
+        android:hint="Last Name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white" />
+
+
+    <EditText
+        android:id="@+id/etSignupUsername"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="412dp"
+        android:layout_marginEnd="70dp"
+        android:hint="Username"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/etSignupPassword"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="71dp"
+        android:hint="Password"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white" />
+
+    <Button
+        android:id="@+id/btLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="332dp"
-        android:text="Sign Up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="188dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="109dp"
+        android:backgroundTint="#0A8AF1"
+        android:text="Sign up" />
+
+    <Spinner
+        android:id="@+id/spGenders"
+        android:layout_width="101dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="114dp"
+        android:background="@color/white"
+        android:backgroundTint="#FFFF" />
 </RelativeLayout>

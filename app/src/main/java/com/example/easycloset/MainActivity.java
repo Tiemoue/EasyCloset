@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public MainFragment mainFragment = new MainFragment();
     public ClosetFragment closetFragment = new ClosetFragment();
     public ProfileFragment profileFragment = new ProfileFragment();
+    public SuggestFragment suggestFragment = new SuggestFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.action_closet:
                                 fragment = closetFragment;
+                                break;
+                            case R.id.action_suggest:
+                                fragment = suggestFragment;
                                 break;
                             default:
                                 fragment = profileFragment;

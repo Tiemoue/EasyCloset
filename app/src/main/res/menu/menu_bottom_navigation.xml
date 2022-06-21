@@ -4,13 +4,19 @@
     <item
         android:id="@+id/action_main"
         android:enabled="true"
-        android:icon="@drawable/home_outline"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="Main"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_suggest"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_checkroom_24"
+        android:title="Suggestions"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_closet"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_change_circle_24"
+        android:icon="@drawable/ic_baseline_curtains_closed_24"
         android:title="Closet"
         app:showAsAction="ifRoom" />
     <item

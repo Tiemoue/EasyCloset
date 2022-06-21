@@ -19,7 +19,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="131dp"
         android:layout_marginEnd="11dp"
-        android:text="Easy Closet"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="32sp" />
@@ -35,7 +35,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="369dp"
         android:layout_marginEnd="63dp"
-        android:hint="Username"
+        android:hint="@string/username"
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white" />
 
@@ -50,7 +50,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="440dp"
         android:layout_marginEnd="59dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white" />
 
@@ -62,7 +62,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="144dp"
         android:backgroundTint="#0A8AF1"
-        android:text="Log in" />
+        android:text="@string/log_in" />
 
     <Button
 
@@ -73,7 +73,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="68dp"
         android:backgroundTint="#FF5722"
-        android:text="Sign Up" />
+        android:text="@string/sign_up" />
 
 
 </RelativeLayout>

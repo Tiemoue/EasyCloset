@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".AdditemActivity">
-
+    tools:context=".AddItemActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -16,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="72dp"
         android:layout_marginTop="39dp"
-        android:text="Add items to Closet"
+        android:text="@string/add_items_to_closet"
         android:textSize="25sp" />
 
 
@@ -46,7 +44,7 @@
         android:layout_marginTop="142dp"
         android:layout_marginEnd="3dp"
         android:orientation="horizontal"
-        android:paddingLeft="32dp"
+        android:paddingStart="32dp"
         android:paddingTop="10dp">
 
 
@@ -54,19 +52,14 @@
             android:id="@+id/btCoat"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Coats" />
+            android:text="@string/coats" />
 
         <Button
             android:id="@+id/btJacket"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
-            android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Jackets" />
+            android:layout_marginStart="40dp"
+            android:text="@string/jackets" />
 
     </LinearLayout>
 
@@ -88,19 +81,14 @@
             android:id="@+id/btShirts"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Shirts" />
+            android:text="@string/shirts" />
 
         <Button
             android:id="@+id/btPants"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
-            android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Pants" />
+            android:layout_marginStart="40dp"
+            android:text="@string/pants" />
 
     </LinearLayout>
 
@@ -122,19 +110,14 @@
             android:id="@+id/btSweaters"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Sweaters" />
+            android:text="@string/sweaters" />
 
         <Button
             android:id="@+id/btHoodies"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
-            android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Hoodies" />
+            android:layout_marginStart="40dp"
+            android:text="@string/hoodies" />
 
     </LinearLayout>
 
@@ -149,7 +132,7 @@
         android:layout_marginTop="403dp"
         android:layout_marginEnd="-6dp"
         android:orientation="horizontal"
-        android:paddingLeft="32dp"
+        android:paddingStart="32dp"
         android:paddingTop="10dp">
 
 
@@ -157,19 +140,14 @@
             android:id="@+id/btJoggers"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Joggers" />
+            android:text="@string/joggers" />
 
         <Button
             android:id="@+id/btShorts"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
-            android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Shorts" />
+            android:layout_marginStart="40dp"
+            android:text="@string/shorts" />
 
     </LinearLayout>
 
@@ -192,19 +170,14 @@
             android:id="@+id/Boots"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Boots" />
+            android:text="@string/boots" />
 
         <Button
             android:id="@+id/btSneakers"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
-            android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Sneakers" />
+            android:layout_marginStart="40dp"
+            android:text="@string/sneakers" />
 
     </LinearLayout>
 
@@ -219,7 +192,7 @@
         android:layout_marginTop="559dp"
         android:layout_marginEnd="-8dp"
         android:orientation="horizontal"
-        android:paddingLeft="32dp"
+        android:paddingStart="32dp"
         android:paddingTop="10dp">
 
 
@@ -227,19 +200,14 @@
             android:id="@+id/btSlides"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Slides" />
+            android:text="@string/slides" />
 
         <Button
             android:id="@+id/btHeadwear"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btCoat"
-            android:layout_alignBottom="@+id/btCoat"
             android:layout_marginLeft="40dp"
-            android:layout_toEndOf="@+id/btCoat"
-            android:text="Headwears" />
+            android:text="@string/headwears" />
 
     </LinearLayout>
 
@@ -251,7 +219,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="14dp"
-        android:text="Done" />
+        android:text="@string/done" />
 
 
 </RelativeLayout>

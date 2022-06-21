@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class AdditemActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity {
 
     private Button btnCoats;
     private Button btnJackets;
@@ -15,15 +15,13 @@ public class AdditemActivity extends AppCompatActivity {
     private Button btnShirts;
     private Button btnHoodies;
     private Button btnShorts;
-    private  Button btnPants;
-    private  Button btnJoggers;
+    private Button btnPants;
+    private Button btnJoggers;
     private Button btnBoots;
     private Button btnSneakers;
     private Button btnSlides;
     private Button btnHeadwear;
     private Button btnDone;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class AdditemActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity() {
-        Intent intent = new Intent(AdditemActivity.this, MainActivity.class);
+        Intent intent = new Intent(AddItemActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

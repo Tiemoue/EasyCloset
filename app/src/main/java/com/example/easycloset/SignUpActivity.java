@@ -16,7 +16,6 @@ public class SignUpActivity extends AppCompatActivity {
     private String genderChoice;
     private Button btnSignUp;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void goToItemsActivity() {
-        Intent intent = new Intent(SignUpActivity.this, AdditemActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, AddItemActivity.class);
         startActivity(intent);
         finish();
     }

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     public BottomNavigationView bottomNavigationView;
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    public MainFragment mainFragment = new MainFragment();
+    public HomeFragment mainFragment = new HomeFragment();
     public ClosetFragment closetFragment = new ClosetFragment();
     public ProfileFragment profileFragment = new ProfileFragment();
     public SuggestFragment suggestFragment = new SuggestFragment();

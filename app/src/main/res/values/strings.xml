@@ -30,6 +30,7 @@
     <string name="first_name">First Name</string>
     <string name="closet_fragment">Closet Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="msg">Good Morning</string>
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>

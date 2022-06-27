@@ -24,6 +24,8 @@ public class Weather {
     private JSONObject sys;
     private long sunrise;
     private long sunset;
+    private double lat;
+    private double lon;
     private String weatherMain;
 
     public Weather() {
@@ -46,6 +48,8 @@ public class Weather {
         temp_max = main.getString("temp_max");
         sunrise = sys.getLong("sunrise");
         sunset = sys.getLong("sunset");
+        lat = jsonObject.getJSONObject("coord").getDouble("lat");
+        lon = jsonObject.getJSONObject("coord").getDouble("lon");
     }
 
     public String getTemp() {
@@ -73,8 +77,7 @@ public class Weather {
     }
 
     public String getUpdatedAt() {
-        String updatedAtText = "Last Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000));
-        return updatedAtText;
+        return "Last Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000));
     }
 
     public String getCityName() {
@@ -102,13 +105,11 @@ public class Weather {
     }
 
     public String getSunrise() {
-        String sunriseStr = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunrise * 1000));
-        return sunriseStr;
+        return new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunrise * 1000));
     }
 
     public String getSunset() {
-          String sunsetStr = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunset * 1000));
-        return sunsetStr;
+        return new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunset * 1000));
     }
 }
 

@@ -26,10 +26,10 @@ import okhttp3.Headers;
 
 public class HomeFragment extends Fragment {
 
-    Weather weather;
-    ImageView search;
-    EditText etCity;
-    TextView tvCity, tvCountry, tvTemp, tvForecast, tvHumidity, tvMinTemp, tvMaxTemp, tvSunrise, tvSunset;
+    private Weather weather;
+    private ImageView search;
+    private EditText etCity;
+    private TextView tvCity, tvCountry, tvTemp, tvForecast, tvHumidity, tvMinTemp, tvMaxTemp, tvSunrise, tvSunset;
 
     public HomeFragment() {
         // Required empty public constructor

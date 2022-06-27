@@ -16,12 +16,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    public BottomNavigationView bottomNavigationView;
-    final FragmentManager fragmentManager = getSupportFragmentManager();
-    public HomeFragment mainFragment = new HomeFragment();
-    public ClosetFragment closetFragment = new ClosetFragment();
-    public ProfileFragment profileFragment = new ProfileFragment();
-    public SuggestFragment suggestFragment = new SuggestFragment();
+    private BottomNavigationView bottomNavigationView;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private HomeFragment mainFragment = new HomeFragment();
+    private ClosetFragment closetFragment = new ClosetFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
+    private SuggestFragment suggestFragment = new SuggestFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

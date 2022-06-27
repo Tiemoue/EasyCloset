@@ -28,7 +28,7 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
 
-        btnDone  = findViewById(R.id.btDone);
+        btnDone = findViewById(R.id.btDone);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override

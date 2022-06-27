@@ -12,6 +12,7 @@ import java.util.TimerTask;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final Timer timer = new Timer();
+    private boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,24 @@ public class SplashScreenActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if (active) {
+                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 3000);
     }
 
     @Override
-    protected void onPause() {
-        timer.cancel();
-        super.onPause();
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        active = false;
     }
 }

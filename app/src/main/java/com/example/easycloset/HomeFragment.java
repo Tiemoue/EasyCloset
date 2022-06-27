@@ -1,59 +1,29 @@
 package com.example.easycloset;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import okhttp3.Headers;
 
@@ -70,7 +40,6 @@ public class HomeFragment extends Fragment {
     private LocationRequest mLocationRequest;
     private NestedScrollView nestedScrollView;
     private MainActivity activity;
-
 
     public HomeFragment() {
     }
@@ -91,7 +60,6 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -149,8 +117,8 @@ public class HomeFragment extends Fragment {
                     tvForecast.setText(weather.getCast());
                     tvTemp.setText(weather.getTemp());
                     tvHumidity.setText(weather.getHumidity());
-                    tvMinTemp.setText(weather.getTemp_min());
-                    tvMaxTemp.setText(weather.getTemp_max());
+                    tvMinTemp.setText(weather.getTempMin());
+                    tvMaxTemp.setText(weather.getTempMax());
                     tvSunrise.setText(weather.getSunrise());
                     tvSunset.setText(weather.getSunset());
                 } catch (JSONException e) {
@@ -164,8 +132,4 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
-
 }
-
-

@@ -6,13 +6,31 @@
     tools:context=".ClosetFragment">
 
     <TextView
-        android:layout_width="259dp"
-        android:layout_height="56dp"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="6dp"
         android:text="@string/closet_fragment"
-        android:textSize="32sp" />
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btAddClothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="3dp"
+        android:text="@string/add_clothes" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp" />
+
 
 </RelativeLayout>

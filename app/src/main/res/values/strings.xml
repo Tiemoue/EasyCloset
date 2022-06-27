@@ -31,11 +31,17 @@
     <string name="closet_fragment">Closet Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
     <string name="msg">Good Morning</string>
+    <string name="add_clothes">Add clothes</string>
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>
         <item>Others</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upload">upload</string>
+    <string name="take_picture">take picture</string>
+    <string name="enter_a_colour">Enter A colour</string>
 
 </resources>
 

@@ -29,11 +29,19 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_additem);
 
         btnDone = findViewById(R.id.btDone);
+        btnCoats = findViewById(R.id.btCoat);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainActivity();
+            }
+        });
+
+        btnCoats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              goToCameraActivity();
             }
         });
     }
@@ -43,4 +51,11 @@ public class AddItemActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void goToCameraActivity(){
+        Intent intent = new Intent(AddItemActivity.this, CameraActivity.class);
+        startActivity(intent);
+    }
+
+
 }

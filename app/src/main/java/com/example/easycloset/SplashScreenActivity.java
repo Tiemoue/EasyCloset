@@ -10,13 +10,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashScreenActivity extends AppCompatActivity {
+
     private final Timer timer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-
 
         timer.schedule(new TimerTask() {
             @Override
@@ -25,9 +25,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },3000);
+        }, 3000);
     }
-
 
     @Override
     protected void onPause() {

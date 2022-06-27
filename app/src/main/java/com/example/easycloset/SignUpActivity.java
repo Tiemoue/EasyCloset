@@ -22,7 +22,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         spinner = findViewById(R.id.spGenders);
-
         btnSignUp = findViewById(R.id.btSignUpAccount);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.genders, android.R.layout.simple_spinner_dropdown_item);
@@ -34,10 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 genderChoice = parent.getItemAtPosition(position).toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -47,9 +44,6 @@ public class SignUpActivity extends AppCompatActivity {
                 goToItemsActivity();
             }
         });
-
-
-
     }
 
     private void goToItemsActivity() {

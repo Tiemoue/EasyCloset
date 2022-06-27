@@ -10,8 +10,8 @@ import java.util.Locale;
 public class Weather {
 
     private String temp;
-    private String temp_min;
-    private String temp_max;
+    private String tempMin;
+    private String tempMax;
     private String icon;
     private int timezone;
     private String humidity;
@@ -42,8 +42,8 @@ public class Weather {
         icon = weather.getString("icon");
         weatherMain = weather.getString("main");
         humidity = main.getString("humidity");
-        temp_min = main.getString("temp_min");
-        temp_max = main.getString("temp_max");
+        tempMin = main.getString("temp_min");
+        tempMax = main.getString("temp_max");
         sunrise = sys.getLong("sunrise");
         sunset = sys.getLong("sunset");
     }
@@ -52,12 +52,12 @@ public class Weather {
         return temp;
     }
 
-    public String getTemp_min() {
-        return temp_min;
+    public String getTempMin() {
+        return tempMin;
     }
 
-    public String getTemp_max() {
-        return temp_max;
+    public String getTempMax() {
+        return tempMax;
     }
 
     public String getIcon() {
@@ -73,8 +73,7 @@ public class Weather {
     }
 
     public String getUpdatedAt() {
-        String updatedAtText = "Last Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000));
-        return updatedAtText;
+        return "Last Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000));
     }
 
     public String getCityName() {
@@ -102,17 +101,10 @@ public class Weather {
     }
 
     public String getSunrise() {
-        String sunriseStr = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunrise * 1000));
-        return sunriseStr;
+        return new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunrise * 1000));
     }
 
     public String getSunset() {
-          String sunsetStr = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunset * 1000));
-        return sunsetStr;
+        return new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(sunset * 1000));
     }
 }
-
-
-
-
-

@@ -6,22 +6,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SplashScreenActivity extends AppCompatActivity {
-    Handler handler;
+    private final Timer timer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        handler = new Handler();
-        handler.postDelayed(new Runnable() {
+
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 2000);
+        },3000);
+    }
+
+
+    @Override
+    protected void onPause() {
+        timer.cancel();
+        super.onPause();
     }
 }

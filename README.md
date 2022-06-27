@@ -92,7 +92,7 @@ Optional:
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user item (default field) |
-   | name          | String   | the name of the item |
+   | type          | String   | the name of the item |
    | image         | File     | image for the clothing |
    | User          | Pointer   | the owner of the item |
    | Color         | String   | the colorof that item |

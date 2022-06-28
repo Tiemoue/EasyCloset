@@ -1,15 +1,7 @@
 package com.example.easycloset;
 
-import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +10,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.google.android.gms.location.LocationRequest;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,15 +27,10 @@ import okhttp3.Headers;
 public class HomeFragment extends Fragment {
 
     private Weather weather;
-    private EditText etCity;
-    private ImageButton btnSearch;
     private TextView tvCity, tvCountry, tvTemp, tvForecast, tvHumidity, tvMinTemp, tvMaxTemp, tvSunrise, tvSunset;
     private ProgressDialog progressDialog;
     private double latitude;
     private double longitude;
-    private LocationRequest mLocationRequest;
-    private NestedScrollView nestedScrollView;
-    private MainActivity activity;
 
     public HomeFragment() {
     }
@@ -51,9 +42,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public HomeFragment(MainActivity mainActivity) {
-        activity = mainActivity;
-    }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,8 +56,8 @@ public class HomeFragment extends Fragment {
         progressDialog.setTitle("Fetching Weather...");
         progressDialog.show();
 
-        btnSearch = view.findViewById(R.id.ivSearchBtn);
-        etCity = view.findViewById(R.id.etYourCity);
+        ImageButton btnSearch = view.findViewById(R.id.ivSearchBtn);
+        EditText etCity = view.findViewById(R.id.etYourCity);
         tvCity = view.findViewById(R.id.tvCity);
         tvCountry = view.findViewById(R.id.tvCountry);
         tvTemp = view.findViewById(R.id.tvTemp);
@@ -78,7 +67,7 @@ public class HomeFragment extends Fragment {
         tvMaxTemp = view.findViewById(R.id.tvMaxTemp);
         tvSunrise = view.findViewById(R.id.tvSunrises);
         tvSunset = view.findViewById(R.id.tvSunsets);
-        nestedScrollView = view.findViewById(R.id.homeScreen);
+        view.findViewById(R.id.homeScreen);
     }
 
     public void setWeather(Weather weather) {

@@ -1,12 +1,14 @@
 package com.example.easycloset;
 
-import android.content.Intent;
+
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -15,21 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ClosetFragment extends Fragment {
 
     private ItemsAdapter adapter;
     private List<Item> allItems;
-    private RecyclerView rvItems;
-    private Button btnAddClothes;
     private MainActivity activity;
+    private ProgressDialog progressDialog;
 
     public ClosetFragment() {
     }
@@ -45,23 +43,21 @@ public class ClosetFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        btnAddClothes = view.findViewById(R.id.btAddClothes);
+        Button btnAddClothes = view.findViewById(R.id.btAddClothes);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        rvItems = view.findViewById(R.id.rvItems);
+        RecyclerView rvItems = view.findViewById(R.id.rvItems);
         rvItems.setLayoutManager(gridLayoutManager);
         allItems = new ArrayList<>();
         adapter = new ItemsAdapter(getContext(), allItems);
         rvItems.setAdapter(adapter);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Updating Closet...");
+        progressDialog.show();
 
-        queryPosts(0);
+        queryPosts();
 
-        btnAddClothes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.setFragmentContainer(activity.getAddFragment());
-            }
-        });
+        btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
     }
 
     public ItemsAdapter getAdapter() {
@@ -72,32 +68,27 @@ public class ClosetFragment extends Fragment {
         return allItems;
     }
 
-    public RecyclerView getRvItems() {
-        return rvItems;
-    }
-
-    protected void queryPosts(int skip) {
+    @SuppressLint("NotifyDataSetChanged")
+    protected void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         // include data referred by user key
         query.include(Item.KEY_USER);
         // limit query to latest 20 items
         query.setLimit(20);
-        query.setSkip(skip);
+        query.setSkip(0);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
-        query.findInBackground(new FindCallback<Item>() {
-            @Override
-            public void done(List<Item> items, ParseException e) {
-                // check for errors
-                if (e != null) {
-                    return;
-                }
-                // save received posts to list and notify adapter of new data
-                allItems.addAll(items);
-                adapter.notifyDataSetChanged();
+        query.findInBackground((items, e) -> {
+            // check for errors
+            if (e != null) {
+                return;
             }
+            // save received posts to list and notify adapter of new data
+            progressDialog.dismiss();
+            allItems.addAll(items);
+            adapter.notifyDataSetChanged();
         });
     }
 }

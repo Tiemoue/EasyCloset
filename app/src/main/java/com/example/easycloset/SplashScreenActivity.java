@@ -2,13 +2,14 @@ package com.example.easycloset;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final Timer timer = new Timer();
@@ -18,7 +19,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        active = true;
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -29,12 +35,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             }
         }, 3000);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        active = true;
     }
 
     @Override

@@ -12,17 +12,15 @@ import android.widget.Spinner;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private Spinner spinner;
     private String genderChoice;
-    private Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        spinner = findViewById(R.id.spGenders);
-        btnSignUp = findViewById(R.id.btSignUpAccount);
+        Spinner spinner = findViewById(R.id.spGenders);
+        Button btnSignUp = findViewById(R.id.btSignUpAccount);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -39,12 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToMainActivity();
-            }
-        });
+        btnSignUp.setOnClickListener(v -> goToMainActivity());
     }
 
     private void goToMainActivity() {

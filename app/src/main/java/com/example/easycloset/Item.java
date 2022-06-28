@@ -2,6 +2,8 @@ package com.example.easycloset;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -49,6 +51,7 @@ public class Item extends ParseObject {
         put(KEY_USER, user);
     }
 
+    @NonNull
     public static String calculateTimeAgo(Date createdAt) {
 
         int SECOND_MILLIS = 1000;

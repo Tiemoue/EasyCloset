@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".AddItemActivity">
+    tools:context=".AddFragment">
 
     <TextView
         android:id="@+id/textView3"
@@ -16,7 +15,6 @@
         android:layout_marginTop="39dp"
         android:text="@string/add_items_to_closet"
         android:textSize="25sp" />
-
 
     <ImageView
         android:id="@+id/camera"
@@ -32,7 +30,6 @@
         android:layout_toEndOf="@+id/textView3"
         android:src="@drawable/ic_baseline_photo_camera_24" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="66dp"
@@ -46,7 +43,6 @@
         android:orientation="horizontal"
         android:paddingStart="32dp"
         android:paddingTop="10dp">
-
 
         <Button
             android:id="@+id/btCoat"
@@ -76,7 +72,6 @@
         android:paddingLeft="32dp"
         android:paddingTop="10dp">
 
-
         <Button
             android:id="@+id/btShirts"
             android:layout_width="150dp"
@@ -104,7 +99,6 @@
         android:orientation="horizontal"
         android:paddingLeft="32dp"
         android:paddingTop="10dp">
-
 
         <Button
             android:id="@+id/btSweaters"
@@ -135,7 +129,6 @@
         android:paddingStart="32dp"
         android:paddingTop="10dp">
 
-
         <Button
             android:id="@+id/btJoggers"
             android:layout_width="150dp"
@@ -164,7 +157,6 @@
         android:orientation="horizontal"
         android:paddingLeft="32dp"
         android:paddingTop="10dp">
-
 
         <Button
             android:id="@+id/Boots"
@@ -195,7 +187,6 @@
         android:paddingStart="32dp"
         android:paddingTop="10dp">
 
-
         <Button
             android:id="@+id/btSlides"
             android:layout_width="150dp"
@@ -220,6 +211,4 @@
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="14dp"
         android:text="@string/done" />
-
-
 </RelativeLayout>

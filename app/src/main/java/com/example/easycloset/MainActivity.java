@@ -1,7 +1,5 @@
 package com.example.easycloset;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 import androidx.annotation.NonNull;
@@ -42,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
     private final long FASTEST_INTERVAL = 5000; /* 5 sec */
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    public final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
-    private final ClosetFragment closetFragment = new ClosetFragment();
+    private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
+    private final AddFragment addFragment = new AddFragment(this);
+    private final UploadFragment uploadFragment = new UploadFragment(this);
     private FusedLocationProviderClient locationClient;
 
     @Override
@@ -90,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public ClosetFragment getClosetFragment() {
+        return closetFragment;
+    }
+
+    public AddFragment getAddFragment() {
+        return addFragment;
+    }
+
+    public UploadFragment getUploadFragment() {
+        return uploadFragment;
     }
 
     @Override

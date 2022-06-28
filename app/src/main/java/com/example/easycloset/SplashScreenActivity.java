@@ -18,7 +18,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        active = true;
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -29,12 +34,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             }
         }, 3000);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        active = true;
     }
 
     @Override

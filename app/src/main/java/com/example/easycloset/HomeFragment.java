@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        search = view.findViewById(R.id.search);
+        search = view.findViewById(R.id.ivSearchButton);
         etCity = view.findViewById(R.id.etYourCity);
         tvCity = view.findViewById(R.id.tvCity);
         tvCountry = view.findViewById(R.id.tvCountry);

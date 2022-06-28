@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/search_bar"
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"

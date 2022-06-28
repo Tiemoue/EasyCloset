@@ -143,8 +143,8 @@ public class UploadFragment extends Fragment {
                     etColour.setText("");
                     ivPicture.setImageResource(0);
                     Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
-                    activity.getClosetFragment().allItems.add(0, item);
-                    activity.getClosetFragment().adapter.notifyDataSetChanged();
+                    activity.getClosetFragment().getAllItems().add(0, item);
+                    activity.getClosetFragment().getAdapter().notifyDataSetChanged();
                     activity.fragmentManager.beginTransaction().replace(R.id.flContainer, activity.getClosetFragment()).commit();
                 }
             }

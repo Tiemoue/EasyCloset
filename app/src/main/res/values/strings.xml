@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">EasyCloset</string>
+    <string name="app_name">Easy Closet</string>
+    <string name="add_items_to_closet">Add items to Closet</string>
+    <string name="jackets">Jackets</string>
+    <string name="coats">Coats</string>
+    <string name="shirts">Shirts</string>
+    <string name="suggest_fragment">Suggest fragment</string>
+    <string name="enter_your_city_name">enter_your_city_name</string>
+    <string name="humidity">Humidity</string>
+    <string name="dash">—</string>
+    <string name="min_temperature">Min Temperature</string>
+    <string name="max_temperature">Max Temperature</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="pants">Pants</string>
+    <string name="sweaters">Sweaters</string>
+    <string name="hoodies">Hoodies</string>
+    <string name="joggers">Joggers</string>
+    <string name="shorts">Shorts</string>
+    <string name="boots">Boots</string>
+    <string name="sneakers">Sneakers</string>
+    <string name="slides">Slides</string>
+    <string name="headwears">Headwears</string>
+    <string name="done">Done</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="closet_fragment">Closet Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="msg">Good Morning</string>
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
+
 </resources>
+

@@ -48,7 +48,7 @@ public class AddFragment extends Fragment {
         btnCoats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.fragmentManager.beginTransaction().replace(R.id.flContainer, activity.getUploadFragment()).commit();
+                activity.setFragmentContainer(activity.getUploadFragment());
             }
         });
     }

@@ -59,7 +59,7 @@ public class ClosetFragment extends Fragment {
         btnAddClothes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.fragmentManager.beginTransaction().replace(R.id.flContainer, activity.getAddFragment()).commit();
+                activity.setFragmentContainer(activity.getAddFragment());
             }
         });
     }

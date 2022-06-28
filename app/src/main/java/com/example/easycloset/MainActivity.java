@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private final long FASTEST_INTERVAL = 5000; /* 5 sec */
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
-    public final FragmentManager fragmentManager = getSupportFragmentManager();
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                                 fragment = profileFragment;
                                 break;
                         }
-                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-                        return true;
+                        setFragmentContainer(fragment);
+                    return true;
                     }
                 });
         // Set default selection
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
     public UploadFragment getUploadFragment() {
         return uploadFragment;
+    }
+
+    public void setFragmentContainer(Fragment fragment){
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 
     @Override

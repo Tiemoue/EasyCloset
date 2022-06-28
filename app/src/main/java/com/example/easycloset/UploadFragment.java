@@ -64,7 +64,7 @@ public class UploadFragment extends Fragment {
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lauchCamera();
+                launchCamera();
             }
         });
 
@@ -80,13 +80,12 @@ public class UploadFragment extends Fragment {
                     saveItem(colour, photoFile);
                 } else {
                     Toast.makeText(getContext(), "no image found", Toast.LENGTH_SHORT).show();
-                    return;
                 }
             }
         });
     }
 
-    private void lauchCamera() {
+    private void launchCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
         photoFile = getPhotoFileUri(photoFileName);
@@ -142,10 +141,10 @@ public class UploadFragment extends Fragment {
                 } else {
                     etColour.setText("");
                     ivPicture.setImageResource(0);
-                    Toast.makeText(getContext(), "Sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
                     activity.getClosetFragment().getAllItems().add(0, item);
                     activity.getClosetFragment().getAdapter().notifyDataSetChanged();
-                    activity.fragmentManager.beginTransaction().replace(R.id.flContainer, activity.getClosetFragment()).commit();
+                    activity.setFragmentContainer(activity.getClosetFragment());;
                 }
             }
         });

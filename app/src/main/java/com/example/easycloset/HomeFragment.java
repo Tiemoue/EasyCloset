@@ -37,8 +37,6 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private double latitude;
     private double longitude;
-    private LocationRequest mLocationRequest;
-    private NestedScrollView nestedScrollView;
     private MainActivity activity;
 
     public HomeFragment() {
@@ -47,8 +45,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        populateHomeFragment();
-
     }
 
     public HomeFragment(MainActivity mainActivity) {
@@ -78,7 +74,6 @@ public class HomeFragment extends Fragment {
         tvMaxTemp = view.findViewById(R.id.tvMaxTemp);
         tvSunrise = view.findViewById(R.id.tvSunrises);
         tvSunset = view.findViewById(R.id.tvSunsets);
-        nestedScrollView = view.findViewById(R.id.homeScreen);
     }
 
     public void setWeather(Weather weather) {
@@ -101,9 +96,9 @@ public class HomeFragment extends Fragment {
         return longitude;
     }
 
-    public void populateHomeFragment() {
+    public void fetchWeatherData(double latitude, double longitude) {
         AsyncHttpClient client = new AsyncHttpClient();
-        String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + getLatitude() + "&lon=" + getLongitude() + "&units=imperial&appid=942dd77fa358eb3439a8212cb16724cd";
+        String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=942dd77fa358eb3439a8212cb16724cd";
 
         client.get(apiByLat, new JsonHttpResponseHandler() {
             @Override

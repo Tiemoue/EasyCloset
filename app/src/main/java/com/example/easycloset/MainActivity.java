@@ -110,18 +110,18 @@ public class MainActivity extends AppCompatActivity {
     // Trigger new location updates at interval
     protected void startLocationUpdates() {
         // Create the location request to start receiving updates
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         /* 10 secs */
         long UPDATE_INTERVAL = 10 * 2000;
-        mLocationRequest.setInterval(UPDATE_INTERVAL);
+        locationRequest.setInterval(UPDATE_INTERVAL);
         /* 5 sec */
         long FASTEST_INTERVAL = 5000;
-        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+        locationRequest.setFastestInterval(FASTEST_INTERVAL);
 
         // Create LocationSettingsRequest object using location request
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(mLocationRequest);
+        builder.addLocationRequest(locationRequest);
         LocationSettingsRequest locationSettingsRequest = builder.build();
 
         // Check whether location settings are satisfied
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermission();
         }
-        getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+        getFusedLocationProviderClient(this).requestLocationUpdates(locationRequest, new LocationCallback() {
                     @Override
                     public void onLocationResult(@NonNull LocationResult locationResult) {
                         onLocationChanged(Objects.requireNonNull(locationResult.getLastLocation()));

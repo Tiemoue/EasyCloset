@@ -1,6 +1,7 @@
 package com.example.easycloset;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         this.items = items;
     }
 
+    public void clear() {
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Item> item) {
+        items.addAll(item);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ItemsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,7 +54,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView tvType;
         private final ImageView ivClothesImage;
@@ -52,12 +63,23 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             super(itemView);
             tvType = itemView.findViewById(R.id.tvType);
             ivClothesImage = itemView.findViewById(R.id.ivClotheImage);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Item item) {
             tvType.setText(String.format("%s %s", item.getColour(), item.getCategory()));
             ParseFile image = item.getImage();
             Glide.with(context).load(image.getUrl()).transform(new RoundedCorners(90)).into(ivClothesImage);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if(position != RecyclerView.NO_POSITION){
+                Intent intent = new Intent(context, ItemDetailActivity.class);
+                intent.putExtra(Item.class.getSimpleName(), items.get(position));
+                context.startActivity(intent);
+            }
         }
     }
 }

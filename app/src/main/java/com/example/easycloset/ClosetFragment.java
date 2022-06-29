@@ -32,6 +32,13 @@ public class ClosetFragment extends Fragment {
     public ClosetFragment() {
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        allItems.clear();
+        queryPosts();
+    }
+
     public ClosetFragment(MainActivity mainActivity) {
         activity = mainActivity;
     }
@@ -54,8 +61,6 @@ public class ClosetFragment extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Updating Closet...");
         progressDialog.show();
-
-        queryPosts();
 
         btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
     }

@@ -31,6 +31,9 @@
     <string name="enter_a_colour">Enter a colour</string>
     <string name="textview">textview</string>
     <string name="back_to_closet">Back to Closet</string>
+    <string name="colour">Colour:</string>
+    <string name="category">Category:</string>
+    <string name="date_added">Date Added:</string>
     <string-array name="category">
         <item>Pants</item>
         <item>Sweaters</item>

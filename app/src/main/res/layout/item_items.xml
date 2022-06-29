@@ -13,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.514"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -25,6 +24,7 @@
         android:text="@string/textview"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ivClotheImage"
         app:layout_constraintStart_toStartOf="@+id/ivClotheImage"

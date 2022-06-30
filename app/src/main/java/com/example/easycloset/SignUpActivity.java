@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spGenders);
         btnSignUp = findViewById(R.id.btSignUpAccount);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.genders, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
 

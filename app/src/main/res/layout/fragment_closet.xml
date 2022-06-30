@@ -6,11 +6,12 @@
     tools:context=".ClosetFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_width="259dp"
+        android:layout_height="56dp"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="51dp"
         android:text="@string/closet_fragment"
         android:textSize="32sp" />
 

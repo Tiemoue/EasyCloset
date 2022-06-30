@@ -31,6 +31,8 @@
     <string name="closet_fragment">Closet Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
     <string name="msg">Good Morning</string>
+    <string name="errorMsg">Unfortunately, Easy Closet Has Stopped</string>
+    <string name="ok">Ok</string>
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>

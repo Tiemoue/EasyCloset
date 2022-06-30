@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/homeScreen"
+    android:padding="10dp"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -34,13 +37,13 @@
                 android:textColorHint="#939393"
                 android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/ivSearchButton"
+            <ImageButton
+                android:id="@+id/ivSearchBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:background="?android:attr/selectableItemBackground" />
+                android:background="@drawable/ic_baseline_search_24" />
 
         </RelativeLayout>
 

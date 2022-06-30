@@ -24,6 +24,8 @@ public class Weather {
     private JSONObject sys;
     private long sunrise;
     private long sunset;
+    private double lat;
+    private double lon;
     private String weatherMain;
 
     public Weather() {
@@ -46,6 +48,8 @@ public class Weather {
         tempMax = main.getString("temp_max");
         sunrise = sys.getLong("sunrise");
         sunset = sys.getLong("sunset");
+        lat = jsonObject.getJSONObject("coord").getDouble("lat");
+        lon = jsonObject.getJSONObject("coord").getDouble("lon");
     }
 
     public String getTemp() {

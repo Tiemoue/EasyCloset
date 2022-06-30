@@ -1,21 +1,19 @@
 package com.example.easycloset;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
@@ -27,24 +25,43 @@ import okhttp3.Headers;
 public class HomeFragment extends Fragment {
 
     private Weather weather;
-    private ImageView search;
     private EditText etCity;
+    private ImageButton btnSearch;
     private TextView tvCity, tvCountry, tvTemp, tvForecast, tvHumidity, tvMinTemp, tvMaxTemp, tvSunrise, tvSunset;
+    private ProgressDialog progressDialog;
+    private double latitude;
+    private double longitude;
+    private MainActivity activity;
+    private Boolean shouldFetch = false;
 
     public HomeFragment() {
-        // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (shouldFetch) {
+            fetchWeather();
+        }
+    }
+
+    public HomeFragment(MainActivity mainActivity) {
+        activity = mainActivity;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        search = view.findViewById(R.id.ivSearchButton);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Fetching Weather...");
+        progressDialog.show();
+
+        btnSearch = view.findViewById(R.id.ivSearchBtn);
         etCity = view.findViewById(R.id.etYourCity);
         tvCity = view.findViewById(R.id.tvCity);
         tvCountry = view.findViewById(R.id.tvCountry);
@@ -55,5 +72,72 @@ public class HomeFragment extends Fragment {
         tvMaxTemp = view.findViewById(R.id.tvMaxTemp);
         tvSunrise = view.findViewById(R.id.tvSunrises);
         tvSunset = view.findViewById(R.id.tvSunsets);
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void fetchWeatherData(double latitude, double longitude) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=942dd77fa358eb3439a8212cb16724cd";
+
+        client.get(apiByLat, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    progressDialog.dismiss();
+                    Weather weather1 = new Weather(jsonObject);
+                    tvCity.setText(weather1.getCityName());
+                    tvCountry.setText(weather1.getCountryName());
+                    tvForecast.setText(weather1.getCast());
+                    tvTemp.setText(weather1.getTemp());
+                    tvHumidity.setText(weather1.getHumidity());
+                    tvMinTemp.setText(weather1.getTempMin());
+                    tvMaxTemp.setText(weather1.getTempMax());
+                    tvSunrise.setText(weather1.getSunrise());
+                    tvSunset.setText(weather1.getSunset());
+                    setWeather(weather1);
+                    shouldFetch = true;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                activity.closeApp();
+            }
+        });
+    }
+
+    public void fetchWeather() {
+        progressDialog.dismiss();
+        tvCity.setText(weather.getCityName());
+        tvCountry.setText(weather.getCountryName());
+        tvForecast.setText(weather.getCast());
+        tvTemp.setText(weather.getTemp());
+        tvHumidity.setText(weather.getHumidity());
+        tvMinTemp.setText(weather.getTempMin());
+        tvMaxTemp.setText(weather.getTempMax());
+        tvSunrise.setText(weather.getSunrise());
+        tvSunset.setText(weather.getSunset());
     }
 }

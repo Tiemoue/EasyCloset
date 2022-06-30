@@ -21,15 +21,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 import java.util.TimeZone;
 
 public class SuggestFragment extends Fragment {
 
     TextView tvDate;
     MainActivity activity;
-    TextView degree;
+    TextView tvTemp;
     Weather suggestWeather;
-    ImageView base;
+    ImageView base, layer, midlayer, bottomlayer;
     List<Item> Sweaters;
 
     public SuggestFragment() {
@@ -49,34 +51,47 @@ public class SuggestFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        DateFormat df = new SimpleDateFormat("h:mm a");
+        DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy");
         df.setTimeZone(TimeZone.getDefault());
         String date = df.format(Calendar.getInstance().getTime());
         Sweaters = new ArrayList<>();
-        tvDate = view.findViewById(R.id.date);
+        tvDate = view.findViewById(R.id.tvDate);
         tvDate.setText(date);
-        degree = view.findViewById(R.id.degree);
+
         suggestWeather = activity.getHomeFragment().getWeather();
-        degree.setText(suggestWeather.getTemp());
+
+        tvTemp = view.findViewById(R.id.tvWeatherTemp);
+        tvTemp.setText(String.format("%s℉", suggestWeather.getTemp()));
+
         base = view.findViewById(R.id.baseLayer);
-        SweaterQuery();
+        layer = view.findViewById(R.id.outerLayer);
+        midlayer = view.findViewById(R.id.middleLayer);
+        bottomlayer = view.findViewById(R.id.shoes);
+
+        Query("Sweater", base);
+        Query("T-shirt", layer);
+        Query("Shorts", midlayer);
+        Query("Sneakers", bottomlayer);
     }
 
-    protected void SweaterQuery() {
+    protected void Query(String category, ImageView base) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         // include data referred by user key
-        query.whereEqualTo(Item.KEY_CATEGORY, "Sweater");
+        query.whereEqualTo(Item.KEY_CATEGORY, category);
         query.findInBackground((items, e) -> {
             // check for errors
             if (e != null) {
                 Log.i("HHERE", e.toString());
                 return;
             }
-            Sweaters.addAll(items);
-            Item item = Sweaters.get(0);
-            Glide.with(getContext()).load(item.getImage().getUrl()).into(base);
+            Random rand = new Random();
+            int num = rand.nextInt(items.size());
+            Item item = items.get(num);
+            Glide.with(requireContext()).load(item.getImage().getUrl()).into(base);
             // save received posts to list and notify adapter of new daa
         });
     }
+
+
 }

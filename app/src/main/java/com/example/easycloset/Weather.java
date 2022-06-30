@@ -9,9 +9,9 @@ import java.util.Locale;
 
 public class Weather {
 
-    private String temp;
-    private String tempMin;
-    private String tempMax;
+    private int temp;
+    private int tempMin;
+    private int tempMax;
     private String icon;
     private long timezone;
     private String humidity;
@@ -38,13 +38,13 @@ public class Weather {
         sys = jsonObject.getJSONObject("sys");
         countryName = sys.getString("country");
         updatedAt = jsonObject.getLong("dt");
-        temp = main.getString("temp");
+        temp = (int) main.getDouble("temp");
         cast = weather.getString("description");
         icon = weather.getString("icon");
         weatherMain = weather.getString("main");
         humidity = main.getString("humidity");
-        tempMin = main.getString("temp_min");
-        tempMax = main.getString("temp_max");
+        tempMin = (int) main.getDouble("temp_min");
+        tempMax = (int) main.getDouble("temp_max");
         sunrise = sys.getLong("sunrise");
         sunset = sys.getLong("sunset");
         lat = jsonObject.getJSONObject("coord").getDouble("lat");
@@ -52,15 +52,15 @@ public class Weather {
     }
 
     public String getTemp() {
-        return temp;
+        return String.valueOf(temp);
     }
 
     public String getTempMin() {
-        return tempMin;
+        return String.valueOf(tempMin);
     }
 
     public String getTempMax() {
-        return tempMax;
+        return String.valueOf(tempMax);
     }
 
     public String getIcon() {

@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
                     tvCity.setText(weather.getCityName());
                     tvCountry.setText(weather.getCountryName());
                     tvForecast.setText(weather.getCast());
-                    tvTemp.setText(weather.getTemp());
+                    tvTemp.setText(String.format("%s℉", weather.getTemp()));
                     tvHumidity.setText(weather.getHumidity());
                     tvMinTemp.setText(weather.getTempMin());
                     tvMaxTemp.setText(weather.getTempMax());
@@ -132,5 +132,6 @@ public class HomeFragment extends Fragment {
                 Log.e("response from server", "error");
             }
         });
+        
     }
 }

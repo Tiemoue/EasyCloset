@@ -1,16 +1,7 @@
 package com.example.easycloset;
 
-import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.google.android.gms.location.LocationRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +32,7 @@ public class HomeFragment extends Fragment {
     private double latitude;
     private double longitude;
     private MainActivity activity;
+    private Boolean shouldFetch = false;
 
     public HomeFragment() {
     }
@@ -45,6 +40,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (shouldFetch) {
+            fetchWeather();
+        }
     }
 
     public HomeFragment(MainActivity mainActivity) {
@@ -106,16 +104,18 @@ public class HomeFragment extends Fragment {
                 JSONObject jsonObject = json.jsonObject;
                 try {
                     progressDialog.dismiss();
-                    weather = new Weather(jsonObject);
-                    tvCity.setText(weather.getCityName());
-                    tvCountry.setText(weather.getCountryName());
-                    tvForecast.setText(weather.getCast());
-                    tvTemp.setText(weather.getTemp());
-                    tvHumidity.setText(weather.getHumidity());
-                    tvMinTemp.setText(weather.getTempMin());
-                    tvMaxTemp.setText(weather.getTempMax());
-                    tvSunrise.setText(weather.getSunrise());
-                    tvSunset.setText(weather.getSunset());
+                    Weather weather1 = new Weather(jsonObject);
+                    tvCity.setText(weather1.getCityName());
+                    tvCountry.setText(weather1.getCountryName());
+                    tvForecast.setText(weather1.getCast());
+                    tvTemp.setText(weather1.getTemp());
+                    tvHumidity.setText(weather1.getHumidity());
+                    tvMinTemp.setText(weather1.getTempMin());
+                    tvMaxTemp.setText(weather1.getTempMax());
+                    tvSunrise.setText(weather1.getSunrise());
+                    tvSunset.setText(weather1.getSunset());
+                    setWeather(weather1);
+                    shouldFetch = true;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -123,8 +123,21 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e("response from server", "error");
+                activity.closeApp();
             }
         });
+    }
+
+    public void fetchWeather() {
+        progressDialog.dismiss();
+        tvCity.setText(weather.getCityName());
+        tvCountry.setText(weather.getCountryName());
+        tvForecast.setText(weather.getCast());
+        tvTemp.setText(weather.getTemp());
+        tvHumidity.setText(weather.getHumidity());
+        tvMinTemp.setText(weather.getTempMin());
+        tvMaxTemp.setText(weather.getTempMax());
+        tvSunrise.setText(weather.getSunrise());
+        tvSunset.setText(weather.getSunset());
     }
 }

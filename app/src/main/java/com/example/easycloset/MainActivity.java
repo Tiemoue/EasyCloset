@@ -3,17 +3,18 @@ package com.example.easycloset;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -140,11 +141,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onLocationChanged(Location location) {
-        double lat  = location.getLatitude();
+        double lat = location.getLatitude();
         double log = location.getLongitude();
         homeFragment.setLatitude(lat);
         homeFragment.setLongitude(log);
-        homeFragment.fetchWeatherData(lat,log);
+        homeFragment.fetchWeatherData(lat, log);
     }
 
     public void getLastLocation() {
@@ -162,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.d("MapDemoActivity", "Error trying to get last GPS location");
-                    e.printStackTrace();
+                    closeApp();
                 });
     }
 
@@ -172,4 +172,23 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 REQUEST_LOCATION_PERMISSION);
     }
+
+    public void closeApp() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setMessage("Unfortunately, Easy Closet Has Stopped")
+                .setCancelable(false)
+                .setNeutralButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                moveTaskToBack(true);
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(1);
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }

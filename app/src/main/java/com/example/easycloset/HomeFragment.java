@@ -31,8 +31,14 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private double latitude;
     private double longitude;
+    MainActivity activity;
 
     public HomeFragment() {
+    }
+
+    public HomeFragment(MainActivity mainActivity) {
+        activity = mainActivity;
+
     }
 
     @Override
@@ -90,6 +96,10 @@ public class HomeFragment extends Fragment {
         return longitude;
     }
 
+    public Weather getWeather() {
+        return weather;
+    }
+
     public void populateHomeFragment() {
         AsyncHttpClient client = new AsyncHttpClient();
         String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + getLatitude() + "&lon=" + getLongitude() + "&units=imperial&appid=942dd77fa358eb3439a8212cb16724cd";
@@ -101,6 +111,7 @@ public class HomeFragment extends Fragment {
                 try {
                     progressDialog.dismiss();
                     weather = new Weather(jsonObject);
+                    setWeather(weather);
                     tvCity.setText(weather.getCityName());
                     tvCountry.setText(weather.getCountryName());
                     tvForecast.setText(weather.getCast());
@@ -110,6 +121,7 @@ public class HomeFragment extends Fragment {
                     tvMaxTemp.setText(weather.getTempMax());
                     tvSunrise.setText(weather.getSunrise());
                     tvSunset.setText(weather.getSunset());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

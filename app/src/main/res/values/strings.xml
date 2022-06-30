@@ -36,16 +36,16 @@
     <string name="date_added">Date Added:</string>
     <string-array name="category">
         <item>Pants</item>
-        <item>Sweaters</item>
-        <item>Hoodies</item>
+        <item>Sweater</item>
+        <item>Hoodie</item>
         <item>Joggers</item>
         <item>Shorts</item>
         <item>Boots</item>
         <item>Sneakers</item>
         <item>Slides</item>
-        <item>Jackets</item>
-        <item>Coats</item>
-        <item>T-shirts</item>
+        <item>Jacket</item>
+        <item>Coat</item>
+        <item>T-shirt</item>
     </string-array>
 </resources>
 

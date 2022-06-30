@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private final FragmentManager fragmentManager = getSupportFragmentManager();
-    private final HomeFragment homeFragment = new HomeFragment();
+    private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
-    private final SuggestFragment suggestFragment = new SuggestFragment();
+    private final SuggestFragment suggestFragment = new SuggestFragment(this);
     private final UploadFragment uploadFragment = new UploadFragment(this);
 
     @SuppressLint("NonConstantResourceId")
@@ -87,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
     public UploadFragment getUploadFragment() {
         return uploadFragment;
+    }
+
+    public HomeFragment getHomeFragment() {
+        return homeFragment;
+    }
+
+    public SuggestFragment getSuggestFragment() {
+        return suggestFragment;
     }
 
     public void setFragmentContainer(Fragment fragment) {

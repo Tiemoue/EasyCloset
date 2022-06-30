@@ -13,7 +13,7 @@ public class Weather {
     private String tempMin;
     private String tempMax;
     private String icon;
-    private int timezone;
+    private long timezone;
     private String humidity;
     private long updatedAt;
     private String cityName;
@@ -34,7 +34,6 @@ public class Weather {
     public Weather(JSONObject jsonObject) throws JSONException {
         main = jsonObject.getJSONObject("main");
         cityName = jsonObject.getString("name");
-        timezone = jsonObject.getInt("timezone");
         weather = jsonObject.getJSONArray("weather").getJSONObject(0);
         sys = jsonObject.getJSONObject("sys");
         countryName = sys.getString("country");
@@ -68,8 +67,8 @@ public class Weather {
         return icon;
     }
 
-    public int getTimezone() {
-        return timezone;
+    public String getTimezone() {
+        return new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date(timezone * 1000));
     }
 
     public String getHumidity() {

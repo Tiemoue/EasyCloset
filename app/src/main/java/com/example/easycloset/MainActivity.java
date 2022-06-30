@@ -176,9 +176,9 @@ public class MainActivity extends AppCompatActivity {
     public void closeApp() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
-                .setMessage("Unfortunately, Easy Closet Has Stopped")
+                .setMessage(R.string.errorMsg)
                 .setCancelable(false)
-                .setNeutralButton("Ok",
+                .setNeutralButton(R.string.ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 moveTaskToBack(true);

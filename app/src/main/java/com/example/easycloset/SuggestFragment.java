@@ -1,38 +1,32 @@
 package com.example.easycloset;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.parse.ParseQuery;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
 
 public class SuggestFragment extends Fragment {
 
-    TextView tvDate;
-    MainActivity activity;
-    TextView tvTemp;
-    Weather suggestWeather;
-    ImageView base, layer, midlayer, bottomlayer;
-    List<Item> Sweaters;
+    private TextView tvDate;
+    private MainActivity activity;
+    private TextView tvTemp;
+    private Weather suggestWeather;
+    private ImageView base, layer, midlayer, bottomlayer;
 
     public SuggestFragment() {
         // Required empty public constructor
@@ -51,10 +45,10 @@ public class SuggestFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy");
         df.setTimeZone(TimeZone.getDefault());
         String date = df.format(Calendar.getInstance().getTime());
-        Sweaters = new ArrayList<>();
         tvDate = view.findViewById(R.id.tvDate);
         tvDate.setText(date);
 
@@ -74,7 +68,8 @@ public class SuggestFragment extends Fragment {
         Query("Sneakers", bottomlayer);
     }
 
-    protected void Query(String category, ImageView base) {
+
+    protected void Query(String category, ImageView imageView) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         // include data referred by user key
@@ -82,16 +77,13 @@ public class SuggestFragment extends Fragment {
         query.findInBackground((items, e) -> {
             // check for errors
             if (e != null) {
-                Log.i("HHERE", e.toString());
                 return;
             }
             Random rand = new Random();
             int num = rand.nextInt(items.size());
             Item item = items.get(num);
-            Glide.with(requireContext()).load(item.getImage().getUrl()).into(base);
+            Glide.with(requireContext()).load(item.getImage().getUrl()).into(imageView);
             // save received posts to list and notify adapter of new daa
         });
     }
-
-
 }

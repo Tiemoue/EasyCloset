@@ -81,7 +81,6 @@ public class ClosetFragment extends Fragment {
         query.include(Item.KEY_USER);
         // limit query to latest 20 items
         query.setLimit(20);
-        query.setSkip(0);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts

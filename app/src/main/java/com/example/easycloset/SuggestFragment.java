@@ -1,5 +1,6 @@
 package com.example.easycloset;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class SuggestFragment extends Fragment {
     private TextView tvTemp;
     private Weather suggestWeather;
     private ImageView baseLayer, outerLayer, feet, pants;
+    ProgressDialog progressDialog;
 
     public SuggestFragment() {
         // Required empty public constructor
@@ -61,6 +63,10 @@ public class SuggestFragment extends Fragment {
         outerLayer = view.findViewById(R.id.ivOuterLayer);
         feet = view.findViewById(R.id.ivFeet);
         pants = view.findViewById(R.id.ivPants);
+        progressDialog = new ProgressDialog(getContext());
+
+        progressDialog.setTitle("Generating Outfit...");
+        progressDialog.show();
         generateFit();
 
     }
@@ -76,6 +82,7 @@ public class SuggestFragment extends Fragment {
             if (e != null) {
                 return;
             }
+            progressDialog.dismiss();
             Random rand = new Random();
             int num = rand.nextInt(items.size());
             Item item = items.get(num);
@@ -89,5 +96,6 @@ public class SuggestFragment extends Fragment {
         Query("T-shirt", baseLayer);
         Query("Shorts", pants);
         Query("Sneakers", feet);
+
     }
 }

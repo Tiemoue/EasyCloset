@@ -34,6 +34,10 @@
     <string name="colour">Colour:</string>
     <string name="category">Category:</string>
     <string name="date_added">Date Added:</string>
+    <string name="feet">FEET</string>
+    <string name="bottom_layer">BOTTOM LAYER</string>
+    <string name="base_layer">BASE LAYER</string>
+    <string name="outer_layer">OUTER LAYER</string>
     <string-array name="category">
         <item>Pants</item>
         <item>Sweater</item>

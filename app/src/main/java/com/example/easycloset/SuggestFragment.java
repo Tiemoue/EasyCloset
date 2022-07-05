@@ -26,7 +26,7 @@ public class SuggestFragment extends Fragment {
     private MainActivity activity;
     private TextView tvTemp;
     private Weather suggestWeather;
-    private ImageView base, layer, midlayer, bottomlayer;
+    private ImageView baseLayer, outerLayer, feet, pants;
 
     public SuggestFragment() {
         // Required empty public constructor
@@ -57,15 +57,12 @@ public class SuggestFragment extends Fragment {
         tvTemp = view.findViewById(R.id.tvWeatherTemp);
         tvTemp.setText(String.format("%s℉", suggestWeather.getTemp()));
 
-        base = view.findViewById(R.id.baseLayer);
-        layer = view.findViewById(R.id.outerLayer);
-        midlayer = view.findViewById(R.id.middleLayer);
-        bottomlayer = view.findViewById(R.id.shoes);
+        baseLayer = view.findViewById(R.id.ivBaseLayer);
+        outerLayer = view.findViewById(R.id.ivOuterLayer);
+        feet = view.findViewById(R.id.ivFeet);
+        pants = view.findViewById(R.id.ivPants);
+        generateFit();
 
-        Query("Sweater", base);
-        Query("T-shirt", layer);
-        Query("Shorts", midlayer);
-        Query("Sneakers", bottomlayer);
     }
 
 
@@ -85,5 +82,12 @@ public class SuggestFragment extends Fragment {
             Glide.with(requireContext()).load(item.getImage().getUrl()).into(imageView);
             // save received posts to list and notify adapter of new daa
         });
+    }
+
+    public void generateFit() {
+        Query("Sweater", outerLayer);
+        Query("T-shirt", baseLayer);
+        Query("Shorts", pants);
+        Query("Sneakers", feet);
     }
 }

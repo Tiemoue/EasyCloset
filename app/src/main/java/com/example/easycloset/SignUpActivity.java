@@ -33,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 genderChoice = parent.getItemAtPosition(position).toString();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -41,13 +42,13 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToItemsActivity();
+                goToMainActivity();
             }
         });
     }
 
-    private void goToItemsActivity() {
-        Intent intent = new Intent(SignUpActivity.this, AddItemActivity.class);
+    private void goToMainActivity() {
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

@@ -34,6 +34,9 @@
     <string name="colour">Colour:</string>
     <string name="category">Category:</string>
     <string name="date_added">Date Added:</string>
+    <string name="errorMsg">Unfortunately, Easy Closet Has Stopped</string>
+    <string name="ok">Ok</string>
+    <string name="updating_closet">Updating Closet...</string>
     <string-array name="category">
         <item>Pants</item>
         <item>Sweaters</item>

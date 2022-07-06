@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Easy Closet</string>
     <string name="add_items_to_closet">Add items to Closet</string>
-    <string name="jackets">Jackets</string>
-    <string name="coats">Coats</string>
-    <string name="shirts">Shirts</string>
     <string name="suggest_fragment">Suggest fragment</string>
     <string name="enter_your_city_name">enter_your_city_name</string>
     <string name="humidity">Humidity</string>
@@ -16,28 +13,39 @@
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign Up</string>
-    <string name="pants">Pants</string>
-    <string name="sweaters">Sweaters</string>
-    <string name="hoodies">Hoodies</string>
-    <string name="joggers">Joggers</string>
-    <string name="shorts">Shorts</string>
-    <string name="boots">Boots</string>
-    <string name="sneakers">Sneakers</string>
-    <string name="slides">Slides</string>
-    <string name="headwears">Headwears</string>
     <string name="done">Done</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
     <string name="closet_fragment">Closet Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
     <string name="msg">Good Morning</string>
-    <string name="errorMsg">Unfortunately, Easy Closet Has Stopped</string>
-    <string name="ok">Ok</string>
+    <string name="add_clothes">Add clothes</string>
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>
         <item>Others</item>
     </string-array>
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upload">upload</string>
+    <string name="take_picture">take picture</string>
+    <string name="enter_a_colour">Enter a colour</string>
+    <string name="textview">textview</string>
+    <string name="back_to_closet">Back to Closet</string>
+    <string name="colour">Colour:</string>
+    <string name="category">Category:</string>
+    <string name="date_added">Date Added:</string>
+    <string-array name="category">
+        <item>Pants</item>
+        <item>Sweaters</item>
+        <item>Hoodies</item>
+        <item>Joggers</item>
+        <item>Shorts</item>
+        <item>Boots</item>
+        <item>Sneakers</item>
+        <item>Slides</item>
+        <item>Jackets</item>
+        <item>Coats</item>
+        <item>T-shirts</item>
+    </string-array>
 </resources>
 

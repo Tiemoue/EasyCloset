@@ -92,10 +92,10 @@ public class SuggestFragment extends Fragment {
     }
 
     public void generateFit() {
-        Query("Sweater", outerLayer);
-        Query("T-shirt", baseLayer);
-        Query("Shorts", pants);
-        Query("Sneakers", feet);
+        Query("sweater", outerLayer);
+        Query("t-shirt", baseLayer);
+        Query("shorts", pants);
+        Query("sneakers", feet);
 
     }
 }

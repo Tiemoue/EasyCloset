@@ -38,6 +38,10 @@
     <string name="bottom_layer">BOTTOM LAYER</string>
     <string name="base_layer">BASE LAYER</string>
     <string name="outer_layer">OUTER LAYER</string>
+    <string name="not_found_foot">Recommended Foot wear not found</string>
+    <string name="bottom_not_found">Recommended Bottom Layer not found</string>
+    <string name="base_not_found">Recommended Base Layer not found</string>
+    <string name="outer_not_found">Recommended Outer Layer not found</string>
     <string-array name="category">
         <item>Pants</item>
         <item>Sweater</item>

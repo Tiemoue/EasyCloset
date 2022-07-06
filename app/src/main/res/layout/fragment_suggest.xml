@@ -79,6 +79,7 @@
 
 
             <TextView
+                android:id="@+id/tvOuterLayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/outer_layer"
@@ -103,6 +104,7 @@
                 android:layout_marginStart="30dp" />
 
             <TextView
+                android:id="@+id/tvBaseLayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -136,6 +138,7 @@
                 android:layout_marginStart="30dp" />
 
             <TextView
+                android:id="@+id/tvBottomLayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -163,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/feet"
+                android:id="@+id/tvFeet"
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="20sp"

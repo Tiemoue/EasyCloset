@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment(this);
-    private final ProfileFragment profileFragment = new ProfileFragment();
+    private final ProfileFragment profileFragment = new ProfileFragment(this);
     private final SuggestFragment suggestFragment = new SuggestFragment(this);
     private final UploadFragment uploadFragment = new UploadFragment(this);
 

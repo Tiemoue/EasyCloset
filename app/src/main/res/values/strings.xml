@@ -42,6 +42,7 @@
     <string name="bottom_not_found">Recommended Bottom Layer not found</string>
     <string name="base_not_found">Recommended Base Layer not found</string>
     <string name="outer_not_found">Recommended Outer Layer not found</string>
+    <string name="username_profile">Username :</string>
     <string-array name="category">
         <item>Pants</item>
         <item>Sweater</item>

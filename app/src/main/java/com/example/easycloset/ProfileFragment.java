@@ -11,9 +11,15 @@ import android.view.ViewGroup;
 
 
 public class ProfileFragment extends Fragment {
+    MainActivity activity;
 
     public ProfileFragment() {
         // Required empty public constructor
+    }
+
+    public ProfileFragment(MainActivity mainActivity) {
+        activity = mainActivity;
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

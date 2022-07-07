@@ -39,7 +39,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="70dp"
         android:orientation="horizontal"
-        android:paddingStart="125dp">
+        android:paddingStart="80dp">
 
         <TextView
             android:id="@+id/tvWeatherTemp"

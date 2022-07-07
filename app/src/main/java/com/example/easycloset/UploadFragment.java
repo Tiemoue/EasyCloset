@@ -3,6 +3,7 @@ package com.example.easycloset;
 import static android.app.Activity.RESULT_OK;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -143,7 +145,7 @@ public class UploadFragment extends Fragment {
     private void saveItem(String colour, String category, File photoFile) {
         Item item = new Item();
         item.setColour(colour);
-        item.setCategory(category);
+        item.setCategory(category.toLowerCase());
         item.setImage(new ParseFile(photoFile));
         item.saveInBackground(e -> {
             if (e != null) {
@@ -158,4 +160,6 @@ public class UploadFragment extends Fragment {
             }
         });
     }
+
+
 }

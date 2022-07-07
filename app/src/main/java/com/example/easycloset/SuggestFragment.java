@@ -23,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
 
@@ -71,7 +70,7 @@ public class SuggestFragment extends Fragment {
         Weather suggestWeather = activity.getHomeFragment().getWeather();
 
         TextView tvTemp = view.findViewById(R.id.tvWeatherTemp);
-        tvTemp.setText(String.format("%s℉", suggestWeather.getTemp()));
+        tvTemp.setText(String.format("Today  %s℉", suggestWeather.getTemp()));
 
         baseLayer = view.findViewById(R.id.ivBaseLayer);
         outerLayer = view.findViewById(R.id.ivOuterLayer);

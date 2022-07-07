@@ -35,8 +35,7 @@ public class ClosetFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        allItems.clear();
-        queryPosts();
+        adapter.notifyDataSetChanged();
     }
 
     public ClosetFragment(MainActivity mainActivity) {
@@ -75,11 +74,11 @@ public class ClosetFragment extends Fragment {
         query.addDescendingOrder("createdAt");
         query.findInBackground((items, e) -> {
             // check for errors
+            progressDialog.dismiss();
             if (e != null) {
-                return;
+                activity.closeApp();
             }
             // save received posts to list and notify adapter of new data
-            progressDialog.dismiss();
             allItems.addAll(items);
             adapter.notifyDataSetChanged();
         });

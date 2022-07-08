@@ -147,7 +147,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    public void reCount(){
+    public void reCount() {
         bootsCount = 0;
         jacketCount = 0;
         coatsCount = 0;

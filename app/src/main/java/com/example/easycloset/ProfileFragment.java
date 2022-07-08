@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment {
         ivProfileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+
                 dialogBox();
             }
         });

@@ -86,7 +86,7 @@ public class SuggestFragment extends Fragment {
         progressDialog.setTitle("Generating Outfit...");
         progressDialog.show();
         if (!shouldFetch) {
-            multipleQueries(outerLayer, baseLayer, pants, feet, "sweater", "t-shirt", "joggers", "sneakers");
+            multipleQueries(outerLayer, baseLayer, pants, feet, "sweaters", "t-shirt", "joggers", "sneakers");
         }
     }
 

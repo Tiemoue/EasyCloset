@@ -6,10 +6,13 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@ParseClassName("User")
-public class User extends ParseObject {
+@ParseClassName("_User")
+public class User extends ParseUser {
 
     public static final String KEY_FIRST_NAME = "first_name";
+//    public static final String KEY_USERNAME = "username";
+//    public static final String KEY_PASSWORD = "password";
+
     public static final String KEY_IMAGE = "image";
     public static final String KEY_LAST_NAME = "last_name";
     public static final String KEY_GENDER = "gender";
@@ -46,10 +49,27 @@ public class User extends ParseObject {
         put(KEY_LAST_NAME, lastName);
     }
 
-    public void setUsername(String username) {
-    }
+//    public void setUsername(String username) {
+//        put(KEY_USERNAME, username);
+//    }
+//
+//    public void setPassword(String password) {
+//        put(KEY_PASSWORD, password);
+//    }
+//
+//
+//    public String getKeyUsername() {
+//        return getString(KEY_USERNAME);
+//    }
+//
+//    public String getKeyPassword() {
+//        return getString(KEY_PASSWORD);
+//    }
 
-    public void setPassword(String password) {
-    }
+
+
+
+
+
 }
 

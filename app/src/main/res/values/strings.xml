@@ -2,7 +2,7 @@
     <string name="app_name">Easy Closet</string>
     <string name="add_items_to_closet">Add items to Closet</string>
     <string name="suggest_fragment">Suggest fragment</string>
-    <string name="enter_your_city_name">enter_your_city_name</string>
+    <string name="enter_your_city_name">Enter Your City Name</string>
     <string name="humidity">Humidity</string>
     <string name="dash">—</string>
     <string name="min_temperature">Min Temperature</string>
@@ -56,5 +56,16 @@
         <item>Coat</item>
         <item>T-shirt</item>
     </string-array>
+    <color name="colorPrimary">#00796b</color>
+    <color name="colorPrimaryDark">#00695C</color>
+    <color name="colorAccent">#FF5722</color>
+<string name="login">Login</string>
+<string name="e_mail">Email</string>
+<string name="tag">Let\'s join us and \nBuild your relationship with others</string>
+<string name="swipe_right_for_login">Swipe Right for Login</string>
+<string name="register">Register</string>
+<string name="re_type_password">Re-type Password</string>
+<string name="your_name">Full Name</string>
+    <string name="swipe_left_for_register">swipe left for register</string>
 </resources>
 

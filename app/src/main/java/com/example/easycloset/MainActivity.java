@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logOutUser() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, FirstActivity.class);
         startActivity(intent);
         finish();
     }

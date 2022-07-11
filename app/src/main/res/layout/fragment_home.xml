@@ -2,9 +2,9 @@
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/homeScreen"
     android:padding="10dp"
     tools:context=".HomeFragment">
 
@@ -20,6 +20,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
+            android:background="@drawable/et_custom"
+            android:backgroundTint="#706D6D"
             android:gravity="center_horizontal"
             android:padding="2dp">
 
@@ -30,11 +32,11 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
+                android:backgroundTint="#706D6D"
                 android:ems="10"
                 android:hint="@string/enter_your_city_name"
                 android:inputType="text"
-                android:textColor="#ffffff"
-                android:textColorHint="#939393"
+                android:textColor="#D6D0D0"
                 android:textSize="15sp" />
 
             <ImageButton
@@ -43,7 +45,8 @@
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ic_baseline_search_24" />
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_search_24" />
 
         </RelativeLayout>
 
@@ -60,6 +63,7 @@
                 android:layout_gravity="center_horizontal"
                 android:includeFontPadding="false"
                 android:textAllCaps="true"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -69,6 +73,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:includeFontPadding="false"
+                android:textColor="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -95,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -104,15 +110,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:includeFontPadding="false"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
         <View
             android:layout_width="150dp"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:background="#FF5722" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,6 +141,7 @@
                     android:gravity="start"
                     android:text="@string/humidity"
                     android:textAllCaps="false"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -140,7 +149,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="38dp" />
+                    android:layout_marginStart="38dp"
+                    android:src="@drawable/ic_humidity_alt" />
 
                 <TextView
                     android:id="@+id/tvHumidity"
@@ -151,6 +161,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/dash"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -167,6 +178,7 @@
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="@string/min_temperature"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -174,7 +186,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="38dp" />
+                    android:layout_marginStart="38dp"
+                    android:src="@drawable/ic_thermometer_temperature" />
 
                 <TextView
                     android:id="@+id/tvMinTemp"
@@ -185,6 +198,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/dash"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -201,6 +215,7 @@
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="@string/max_temperature"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -208,7 +223,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="38dp" />
+                    android:layout_marginStart="38dp"
+                    android:src="@drawable/ic_thermometer_temperature" />
 
                 <TextView
                     android:id="@+id/tvMaxTemp"
@@ -219,6 +235,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/dash"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -232,9 +249,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
+            android:baselineAligned="false"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:baselineAligned="false">
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -246,13 +263,15 @@
 
                 <ImageView
                     android:layout_width="40dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sunrise" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="@string/sunrise" />
+                    android:text="@string/sunrise"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tvSunrises"
@@ -262,6 +281,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/dash"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -276,13 +296,15 @@
 
                 <ImageView
                     android:layout_width="40dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sunsett_two" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="@string/sunset" />
+                    android:text="@string/sunset"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tvSunsets"
@@ -292,10 +314,10 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/dash"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>

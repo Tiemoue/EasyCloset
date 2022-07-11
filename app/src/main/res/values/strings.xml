@@ -56,12 +56,12 @@
         <item>Coat</item>
         <item>T-shirt</item>
     </string-array>
-    <color name="colorPrimary">#00796b</color>
+    <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#00695C</color>
     <color name="colorAccent">#FF5722</color>
 <string name="login">Login</string>
 <string name="e_mail">Email</string>
-<string name="tag">Let\'s join us and \nBuild your relationship with others</string>
+<string name="tag">Let\'s get you dressed</string>
 <string name="swipe_right_for_login">Swipe Right for Login</string>
 <string name="register">Register</string>
 <string name="re_type_password">Re-type Password</string>

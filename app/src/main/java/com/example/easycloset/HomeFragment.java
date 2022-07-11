@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,7 +48,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
@@ -60,6 +58,7 @@ public class HomeFragment extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Fetching Weather...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         ImageButton btnSearch = view.findViewById(R.id.ivSearchBtn);
@@ -132,6 +131,6 @@ public class HomeFragment extends Fragment {
                 Log.e("response from server", "error");
             }
         });
-        
+
     }
 }

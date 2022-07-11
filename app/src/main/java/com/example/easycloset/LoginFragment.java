@@ -32,7 +32,6 @@ public class LoginFragment extends Fragment {
         EditText etUsername = view.findViewById(R.id.etUsername);
         EditText etPassword = view.findViewById(R.id.etPassword);
         Button btnLogin = view.findViewById(R.id.btLogIn);
-        Button btnSignup = view.findViewById(R.id.btSignUp);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class ClosetFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Button btnAddClothes = view.findViewById(R.id.btAddClothes);
+        FloatingActionButton btnAddClothes = view.findViewById(R.id.floatingAction);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         RecyclerView rvItems = view.findViewById(R.id.rvItems);
@@ -60,7 +61,10 @@ public class ClosetFragment extends Fragment {
         rvItems.setAdapter(adapter);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Updating Closet...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
+
+
 
         btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
     }

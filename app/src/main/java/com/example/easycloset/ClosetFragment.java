@@ -49,6 +49,7 @@ public class ClosetFragment extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle(getString(R.string.updating_closet));
         progressDialog.show();
+        queryPosts();
     }
 
     public ItemsAdapter getAdapter() {
@@ -64,11 +65,11 @@ public class ClosetFragment extends Fragment {
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         query.addDescendingOrder("createdAt");
         query.findInBackground((items, e) -> {
-            // check for errors
-            progressDialog.dismiss();
+
             if (e != null) {
                 activity.closeApp();
             }
+            progressDialog.dismiss();
             // save received posts to list and notify adapter of new data
             allItems.addAll(items);
             adapter.notifyDataSetChanged();

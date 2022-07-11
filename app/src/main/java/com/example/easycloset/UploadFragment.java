@@ -3,7 +3,6 @@ package com.example.easycloset;
 import static android.app.Activity.RESULT_OK;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,11 +23,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.io.File;
 
@@ -88,8 +87,9 @@ public class UploadFragment extends Fragment {
                 Toast.makeText(getContext(), "Colour cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (photoFile != null && ivPicture.getDrawable() != null) {
-                saveItem(colour, category, photoFile);
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (photoFile != null && ivPicture.getDrawable() != null && currentUser != null) {
+                saveItem(colour, category, photoFile, currentUser);
             } else {
                 Toast.makeText(getContext(), "no image found", Toast.LENGTH_SHORT).show();
             }
@@ -142,9 +142,10 @@ public class UploadFragment extends Fragment {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private void saveItem(String colour, String category, File photoFile) {
+    private void saveItem(String colour, String category, File photoFile, ParseUser currentUser) {
         Item item = new Item();
         item.setColour(colour);
+        item.setUser(currentUser);
         item.setCategory(category.toLowerCase());
         item.setImage(new ParseFile(photoFile));
         item.saveInBackground(e -> {

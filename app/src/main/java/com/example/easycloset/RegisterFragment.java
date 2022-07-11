@@ -2,6 +2,7 @@ package com.example.easycloset;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class RegisterFragment extends Fragment {
 
 
         NiceSpinner niceSpinner = view.findViewById(R.id.nice_spinner);
-        List<String> dataset = new ArrayList<>(Arrays.asList("Select a Gender","Male", "Female", "Other"));
+        List<String> dataset = new ArrayList<>(Arrays.asList("Select a Gender", "Male", "Female", "Other"));
         niceSpinner.attachDataSource(dataset);
         niceSpinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
             @Override
@@ -86,7 +87,7 @@ public class RegisterFragment extends Fragment {
                     Toast.makeText(getContext(), "Password not a match", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(genderChoice == null){
+                if (genderChoice == null) {
                     Toast.makeText(getContext(), "Select a gender", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -114,6 +115,8 @@ public class RegisterFragment extends Fragment {
             public void done(ParseException e) {
                 if (e == null) {
                     goToMainActivity();
+                } else {
+                    Log.e("here", e.toString());
                 }
             }
         });

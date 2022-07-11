@@ -139,46 +139,31 @@ public class SuggestFragment extends Fragment {
                 Suggest suggest = new Suggest();
                 Random random = new Random();
 
+
                 if (outerArray.size() != 0) {
                     ParseFile outerItem = outerArray.get(random.nextInt(outerArray.size()));
-                    Glide.with(requireContext()).load(outerItem.getUrl()).into(outerLayer);
                     suggest.setOuter(outerItem);
-                } else {
-                    tvOuter.setText(R.string.outer_not_found);
-                    tvOuter.setTextSize(10);
-                    Glide.with(requireContext()).load(R.drawable.notfound).into(outerLayer);
+                    generateFit(outerItem, outerLayer);
                 }
 
                 if (baseArray.size() != 0) {
                     ParseFile baseItem = baseArray.get(random.nextInt(baseArray.size()));
-                    Glide.with(getContext()).load(baseItem.getUrl()).into(baseLayer);
                     suggest.setBase(baseItem);
-                } else {
-                    tvBase.setText(R.string.base_not_found);
-                    tvBase.setTextSize(10);
-                    Glide.with(getContext()).load(R.drawable.notfound).into(baseLayer);
+                    generateFit(baseItem, baseLayer);
                 }
+
 
                 if (bottomArray.size() != 0) {
                     ParseFile bottomItem = bottomArray.get(random.nextInt(bottomArray.size()));
-                    Glide.with(getContext()).load(bottomItem.getUrl()).into(pants);
                     suggest.setBottom(bottomItem);
-                } else {
-                    tvBottom.setText(R.string.bottom_not_found);
-                    tvBottom.setTextSize(10);
-                    Glide.with(getContext()).load(R.drawable.notfound).into(pants);
+                    generateFit(bottomItem, pants);
                 }
 
                 if (feetArray.size() != 0) {
                     ParseFile footItem = feetArray.get(random.nextInt(feetArray.size()));
-                    Glide.with(getContext()).load(footItem.getUrl()).into(feet);
                     suggest.setFoot(footItem);
-                } else {
-                    tvFeet.setText(R.string.not_found_foot);
-                    tvFeet.setTextSize(10);
-                    Glide.with(getContext()).load(R.drawable.notfound).into(feet);
+                    generateFit(footItem, feet);
                 }
-
                 setSuggestions(suggest);
                 shouldFetch = true;
             }
@@ -222,5 +207,9 @@ public class SuggestFragment extends Fragment {
             tvFeet.setTextSize(10);
             Glide.with(requireContext()).load(R.drawable.notfound).into(feet);
         }
+    }
+
+    public void generateFit(ParseFile outerItem, ImageView outerLayer) {
+        Glide.with(requireContext()).load(outerItem.getUrl()).into(outerLayer);
     }
 }

@@ -19,6 +19,7 @@ import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +64,6 @@ public class ClosetFragment extends Fragment {
         progressDialog.setTitle("Updating Closet...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-
-
-
         btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
     }
 
@@ -83,8 +81,7 @@ public class ClosetFragment extends Fragment {
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         // include data referred by user key
         query.include(Item.KEY_USER);
-        // limit query to latest 20 items
-        query.setLimit(20);
+        query.whereEqualTo(Item.KEY_USER, ParseUser.getCurrentUser());
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts

@@ -24,17 +24,26 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends Fragment {
     MainActivity activity;
-    TextView tvJacket, tvCoats, tvSweater, tvShirt, tvHodies, tvPants, tvJoggers, tvShorts, tvSneaker, tvBoots, tvSlides, tvItems;
+    TextView tvJacket, tvCoats, tvSweater, tvShirt, tvHodies, tvPants, tvJoggers, tvShorts, tvSneaker, tvBoots, tvSlides, tvItems, tvName;
     int bootsCount, jacketCount, coatsCount, sweaterCount, hoodiesCount, shirtCount, pantsCount, joggerCount, sneakerCount, shortsCount, slidesCount, itemCount = 0;
     TextView tvProfileCity;
-    ImageButton ivProfileImg;
+    CircleImageView ivProfileImg;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
     public static String TAG = ".CameraActivity";
     private File photoFile;
@@ -70,17 +79,25 @@ public class ProfileFragment extends Fragment {
         tvItems = view.findViewById(R.id.itemsCount);
         tvProfileCity = view.findViewById(R.id.tvProfileCity);
         ivProfileImg = view.findViewById(R.id.ibProfileImg);
+        tvName = view.findViewById(R.id.tvUsername);
 
         Weather weather = activity.getHomeFragment().getWeather();
         String city = weather.getCityName() + ", " + weather.getCountryName();
         tvProfileCity.setText(city);
+
         setText();
         queryPosts();
+        User user = (User) User.getCurrentUser();
+        if (user != null && user.getImage() != null) {
+            Glide.with(this).load(user.getImage().getUrl()).transform(new RoundedCorners(90)).into(ivProfileImg);
+        }
+        assert user != null;
+        String name = user.getKeyFirstName() + ", " + user.getKeyLastName();
+        tvName.setText(name);
 
         ivProfileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dialogBox();
             }
         });
@@ -88,8 +105,9 @@ public class ProfileFragment extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     protected void queryPosts() {
-
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
+        query.include(Item.KEY_USER);
+        query.whereEqualTo(Item.KEY_USER, ParseUser.getCurrentUser());
         query.findInBackground((items, e) -> {
             // check for errors
             if (e != null) {
@@ -144,7 +162,6 @@ public class ProfileFragment extends Fragment {
         tvSneaker.setText(String.valueOf(sneakerCount));
         tvShorts.setText(String.valueOf(shortsCount));
         tvSlides.setText(String.valueOf(slidesCount));
-
     }
 
     public void reCount() {
@@ -187,7 +204,17 @@ public class ProfileFragment extends Fragment {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
-                ivProfileImg.setImageBitmap(takenImage);
+                Glide.with(requireContext()).load(takenImage).transform(new RoundedCorners(90)).into(ivProfileImg);
+                User user = (User) User.getCurrentUser();
+                user.setImage(new ParseFile(photoFile));
+                user.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            Toast.makeText(activity, "Saved", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }

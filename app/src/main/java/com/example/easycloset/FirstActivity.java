@@ -1,13 +1,13 @@
 package com.example.easycloset;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,8 @@ public class FirstActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewPager);
 
         AuthenticationPagerAdapter pagerAdapter = new AuthenticationPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragmet(new LoginFragment());
-        pagerAdapter.addFragmet(new RegisterFragment());
+        pagerAdapter.addFragment(new LoginFragment());
+        pagerAdapter.addFragment(new RegisterFragment());
         viewPager.setAdapter(pagerAdapter);
     }
 
@@ -44,7 +44,7 @@ public class FirstActivity extends AppCompatActivity {
             return fragmentList.size();
         }
 
-        void addFragmet(Fragment fragment) {
+        void addFragment(Fragment fragment) {
             fragmentList.add(fragment);
         }
     }

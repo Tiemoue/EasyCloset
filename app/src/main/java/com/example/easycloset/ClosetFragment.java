@@ -65,8 +65,8 @@ public class ClosetFragment extends Fragment {
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         query.addDescendingOrder("createdAt");
         query.findInBackground((items, e) -> {
-
             if (e != null) {
+                progressDialog.dismiss();
                 activity.closeApp();
             }
             progressDialog.dismiss();

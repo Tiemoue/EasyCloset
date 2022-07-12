@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Activities;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -20,6 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.easycloset.Fragments.ClosetFragment;
+import com.example.easycloset.Fragments.HomeFragment;
+import com.example.easycloset.Fragments.ProfileFragment;
+import com.example.easycloset.R;
+import com.example.easycloset.Fragments.SuggestFragment;
+import com.example.easycloset.Fragments.UploadFragment;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -27,6 +33,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 import java.util.Objects;
 
@@ -110,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logOutUser() {
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser();
         Intent intent = new Intent(MainActivity.this, FirstActivity.class);
         startActivity(intent);
         finish();

@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;

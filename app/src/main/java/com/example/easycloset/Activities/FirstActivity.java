@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Activities;
 
 import android.os.Bundle;
 
@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.easycloset.Fragments.LoginFragment;
+import com.example.easycloset.R;
+import com.example.easycloset.Fragments.RegisterFragment;
 
 import java.util.ArrayList;
 

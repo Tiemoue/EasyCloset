@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Fragments;
 
 
 import android.annotation.SuppressLint;
@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.Adapters.ItemsAdapter;
+import com.example.easycloset.Activities.MainActivity;
+import com.example.easycloset.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;

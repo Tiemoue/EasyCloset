@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Models;
 
 
 import com.parse.ParseClassName;
@@ -40,6 +40,8 @@ public class User extends ParseUser {
     public void setKeyGender(String gender) {
         put(KEY_GENDER, gender);
     }
+
+    public String getKeyGender(){return  getString(KEY_GENDER);}
 
     public void setKeyLastName(String lastName) {
         put(KEY_LAST_NAME, lastName);

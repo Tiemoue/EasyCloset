@@ -1,6 +1,7 @@
-package com.example.easycloset;
+package com.example.easycloset.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.easycloset.Activities.ClothesActivity;
+import com.example.easycloset.Activities.MainActivity;
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.Models.Suggest;
+import com.example.easycloset.Models.Weather;
+import com.example.easycloset.Queries;
+import com.example.easycloset.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -83,92 +91,13 @@ public class SuggestFragment extends Fragment {
         tvBottom = view.findViewById(R.id.tvBottomLayer);
         progressDialog = new ProgressDialog(getContext());
 
-        progressDialog.setTitle("Generating Outfit...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        if (!shouldFetch) {
-            multipleQueries(outerLayer, baseLayer, pants, feet, "sweaters", "t-shirt", "joggers", "sneakers");
-        }
+//        progressDialog.setTitle("Generating Outfit...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+        Queries queries = new Queries(outerLayer, baseLayer, pants, feet, getContext());
+        queries.multipleQueries("jacket", "t-shirt", "jogger", "sneaker");
     }
 
-    public void multipleQueries(ImageView outerLayer, ImageView baseLayer, ImageView pants, ImageView feet, String outer, String base, String bottom, String foot) {
-        ParseQuery myQuery1 = new ParseQuery(Item.class);
-        myQuery1.whereEqualTo(Item.KEY_CATEGORY, outer);
-
-        ParseQuery myQuery2 = new ParseQuery(Item.class);
-        myQuery2.whereEqualTo(Item.KEY_CATEGORY, base);
-
-        ParseQuery myQuery3 = new ParseQuery(Item.class);
-        myQuery3.whereEqualTo(Item.KEY_CATEGORY, bottom);
-
-        ParseQuery myQuery4 = new ParseQuery(Item.class);
-        myQuery4.whereEqualTo(Item.KEY_CATEGORY, foot);
-
-        List<ParseQuery<Item>> queries = new ArrayList<ParseQuery<Item>>();
-        queries.add(myQuery1);
-        queries.add(myQuery2);
-        queries.add(myQuery3);
-        queries.add(myQuery4);
-
-        ParseQuery<Item> mainQuery = ParseQuery.or(queries);
-        mainQuery.findInBackground(new FindCallback<Item>() {
-            @Override
-            public void done(List<Item> objects, ParseException e) {
-                if (e != null) {
-                    return;
-                }
-
-                List<ParseFile> outerArray = new ArrayList<>();
-                List<ParseFile> baseArray = new ArrayList<>();
-                List<ParseFile> bottomArray = new ArrayList<>();
-                List<ParseFile> feetArray = new ArrayList<>();
-
-                for (Item object : objects) {
-                    if (object.getCategory().equals(outer)) {
-                        outerArray.add(object.getImage());
-                    } else if (object.getCategory().equals(base)) {
-                        baseArray.add(object.getImage());
-                    } else if (object.getCategory().equals(bottom)) {
-                        bottomArray.add(object.getImage());
-
-                    } else if (object.getCategory().equals(foot)) {
-                        feetArray.add(object.getImage());
-                    }
-                }
-                progressDialog.dismiss();
-                Suggest suggest = new Suggest();
-                Random random = new Random();
-
-
-                if (outerArray.size() != 0) {
-                    ParseFile outerItem = outerArray.get(random.nextInt(outerArray.size()));
-                    suggest.setOuter(outerItem);
-                    generateFit(outerItem, outerLayer);
-                }
-
-                if (baseArray.size() != 0) {
-                    ParseFile baseItem = baseArray.get(random.nextInt(baseArray.size()));
-                    suggest.setBase(baseItem);
-                    generateFit(baseItem, baseLayer);
-                }
-
-
-                if (bottomArray.size() != 0) {
-                    ParseFile bottomItem = bottomArray.get(random.nextInt(bottomArray.size()));
-                    suggest.setBottom(bottomItem);
-                    generateFit(bottomItem, pants);
-                }
-
-                if (feetArray.size() != 0) {
-                    ParseFile footItem = feetArray.get(random.nextInt(feetArray.size()));
-                    suggest.setFoot(footItem);
-                    generateFit(footItem, feet);
-                }
-                setSuggestions(suggest);
-                shouldFetch = true;
-            }
-        });
-    }
 
     public void setSuggestions(Suggest suggestions) {
         this.suggestions = suggestions;
@@ -209,7 +138,4 @@ public class SuggestFragment extends Fragment {
         }
     }
 
-    public void generateFit(ParseFile outerItem, ImageView outerLayer) {
-        Glide.with(requireContext()).load(outerItem.getUrl()).into(outerLayer);
-    }
 }

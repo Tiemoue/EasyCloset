@@ -1,10 +1,13 @@
-package com.example.easycloset;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.easycloset.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.easycloset.R;
+import com.parse.ParseUser;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +32,14 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (active) {
-                    Intent intent = new Intent(SplashScreenActivity.this, FirstActivity.class);
-                    startActivity(intent);
+                    if (ParseUser.getCurrentUser() == null) {
+                        Intent intent = new Intent(SplashScreenActivity.this, FirstActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
                     finish();
                 }
             }

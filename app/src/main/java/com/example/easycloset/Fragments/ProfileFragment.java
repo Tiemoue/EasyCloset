@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +25,11 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.easycloset.Activities.MainActivity;
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.Models.User;
+import com.example.easycloset.Models.Weather;
+import com.example.easycloset.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -33,7 +37,6 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -94,6 +97,7 @@ public class ProfileFragment extends Fragment {
         assert user != null;
         String name = user.getKeyFirstName() + ", " + user.getKeyLastName();
         tvName.setText(name);
+
 
         ivProfileImg.setOnClickListener(new View.OnClickListener() {
             @Override

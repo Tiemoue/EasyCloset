@@ -1,7 +1,10 @@
-package com.example.easycloset;
+package com.example.easycloset.Application;
 
 import android.app.Application;
 
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.Models.Suggest;
+import com.example.easycloset.Models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;

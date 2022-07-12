@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import androidx.fragment.app.Fragment;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.easycloset.Activities.MainActivity;
+import com.example.easycloset.R;
+import com.example.easycloset.Models.Weather;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Models;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -26,6 +26,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.example.easycloset.Activities.MainActivity;
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 

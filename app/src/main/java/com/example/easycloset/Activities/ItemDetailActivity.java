@@ -1,4 +1,4 @@
-package com.example.easycloset;
+package com.example.easycloset.Activities;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.easycloset.Models.Item;
+import com.example.easycloset.R;
 import com.parse.ParseFile;
 
 import java.util.Date;

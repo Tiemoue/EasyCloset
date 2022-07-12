@@ -31,7 +31,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         Item item = getIntent().getParcelableExtra(Item.class.getSimpleName());
 
         Date createdAt = item.getCreatedAt();
-        String time = Item.calculateTimeAgo(createdAt);
+        String time = Item.Time(createdAt);
 
         tvCategory.setText(item.getCategory());
         tvColour.setText(item.getColour());

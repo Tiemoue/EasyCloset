@@ -55,7 +55,7 @@ public class ClosetFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        FloatingActionButton btnAddClothes = view.findViewById(R.id.floatingAction);
+//        FloatingActionButton btnAddClothes = view.findViewById(R.id.floatingAction);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         RecyclerView rvItems = view.findViewById(R.id.rvItems);
@@ -67,7 +67,7 @@ public class ClosetFragment extends Fragment {
         progressDialog.setTitle("Updating Closet...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
+//        btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
     }
 
     public ItemsAdapter getAdapter() {
@@ -83,8 +83,8 @@ public class ClosetFragment extends Fragment {
         // specify what type of data we want to query - Post.class
         ParseQuery<Item> query = ParseQuery.getQuery(Item.class);
         // include data referred by user key
-        query.include(Item.KEY_USER);
-        query.whereEqualTo(Item.KEY_USER, ParseUser.getCurrentUser());
+//        query.include(Item.KEY_USER);
+//        query.whereEqualTo(Item.KEY_USER, ParseUser.getCurrentUser());
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts

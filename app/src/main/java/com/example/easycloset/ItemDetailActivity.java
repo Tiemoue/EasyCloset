@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,10 +44,14 @@ public class ItemDetailActivity extends AppCompatActivity {
             item.deleteInBackground(new DeleteCallback() {
                 @Override
                 public void done(ParseException e) {
-                    Intent intent = new Intent(ItemDetailActivity.this, MainActivity.class);
-                    intent.putExtra(Item.class.getSimpleName(), item);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    if (e == null) {
+                        Intent intent = new Intent(ItemDetailActivity.this, MainActivity.class);
+                        intent.putExtra(Item.class.getSimpleName(), item);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    } else {
+                        Toast.makeText(ItemDetailActivity.this, "error while deleting item", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         });

@@ -18,6 +18,7 @@ import com.parse.ParseFile;
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
+
     private final Context context;
     private final List<Item> items;
 
@@ -63,6 +64,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             super(itemView);
             tvType = itemView.findViewById(R.id.tvType);
             ivClothesImage = itemView.findViewById(R.id.ivClotheImage);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Item item) {

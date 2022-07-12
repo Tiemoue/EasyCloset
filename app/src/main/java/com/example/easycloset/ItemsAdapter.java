@@ -1,6 +1,7 @@
 package com.example.easycloset;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView tvType;
         private final ImageView ivClothesImage;
@@ -69,5 +70,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             ParseFile image = item.getImage();
             Glide.with(context).load(image.getUrl()).transform(new RoundedCorners(90)).into(ivClothesImage);
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                Intent intent = new Intent(context, ItemDetailActivity.class);
+                intent.putExtra(Item.class.getSimpleName(), items.get(position));
+                ((MainActivity) context).startActivityForResult(intent, 1);
+            }
+        }
     }
 }
+

@@ -19,7 +19,7 @@
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <View
         android:layout_width="100dp"
@@ -45,10 +45,10 @@
             android:id="@+id/tvWeatherTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="47dp"
+            android:layout_marginTop="15dp"
             android:text="@string/_75f"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/dayState"
@@ -80,11 +80,11 @@
             <TextView
                 android:id="@+id/tvOuterLayer"
                 android:layout_width="130dp"
-                android:layout_marginStart="40dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:text="@string/outer_layer"
-                android:textColor="@color/black"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -109,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
                 android:text="@string/base_layer"
-                android:textColor="@color/black"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -143,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:text="@string/bottom_layer"
-                android:textColor="@color/black"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -162,13 +162,13 @@
                 android:layout_marginStart="70dp" />
 
             <TextView
+                android:id="@+id/tvFeet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
                 android:text="@string/feet"
-                android:id="@+id/tvFeet"
-                android:textColor="@color/black"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -184,12 +184,26 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="-5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="98dp"
         android:text="RECOMMENDED FOR TODAY"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingShareAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="14dp"
+        android:backgroundTint="@color/colorAccent"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_share_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

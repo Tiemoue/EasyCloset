@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment {
     CircleImageView ivProfileImg;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
     public static String TAG = ".CameraActivity";
+    Button button;
     private File photoFile;
 
     public ProfileFragment() {

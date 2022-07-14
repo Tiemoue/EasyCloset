@@ -14,6 +14,7 @@ public class Clothes {
     private String price;
     private String link;
     private String image;
+    private String merchant;
 
     public Clothes() {
     }
@@ -23,6 +24,7 @@ public class Clothes {
         price = jsonObject.getString("price");
         link = jsonObject.getString("link");
         image = jsonObject.getString("thumbnail");
+        merchant = jsonObject.getString("source");
     }
 
     public static List<Clothes> fromJsonArray(JSONArray clothesJsonArray) throws JSONException {
@@ -71,5 +73,13 @@ public class Clothes {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant;
     }
 }

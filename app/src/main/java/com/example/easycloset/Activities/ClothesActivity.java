@@ -1,9 +1,14 @@
 package com.example.easycloset.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +18,7 @@ import com.example.easycloset.Adapters.ClothesAdapter;
 import com.example.easycloset.Models.Clothes;
 import com.example.easycloset.Models.User;
 import com.example.easycloset.R;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +48,8 @@ public class ClothesActivity extends AppCompatActivity {
         String gender = user.getKeyGender();
         String item = getIntent().getStringExtra("category");
         fetchShoppingData(gender, item);
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
     }
 
     public void fetchShoppingData(String gender, String item) {
@@ -67,5 +75,27 @@ public class ClothesActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.miLogout) {
+            logOutUser();
+        }
+        return true;
+    }
+
+    private void logOutUser() {
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        Intent intent = new Intent(ClothesActivity.this, FirstActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

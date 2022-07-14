@@ -20,11 +20,21 @@
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/coat"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Jackets"
+            android:text="@string/jacket"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <com.google.android.material.chip.Chip
@@ -32,61 +42,8 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-
-            android:text="Sweaters"
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Coats"
-
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Boots"
-
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip6"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="T-shirts"
-
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip7"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Sneakers"
-
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip8"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Shorts"
-
-            android:textSize="13sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip9"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Pants"
+            android:text="@string/sweater"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <com.google.android.material.chip.Chip
@@ -94,16 +51,17 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Hoodies"
+            android:text="@string/hoodie"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip11"
+            android:id="@+id/chip6"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Slides"
-
+            android:text="@string/t_shirt"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <com.google.android.material.chip.Chip
@@ -111,9 +69,55 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Joggers"
-
+            android:text="@string/joggers"
+            android:textColor="@color/black"
             android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip9"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/pants"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip8"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/shorts"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip5"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/boots"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip7"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/sneakers"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip11"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/slides"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -131,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/colorAccent"
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_baseline_add_circle"
         app:layout_anchor="@id/rvItems"
@@ -143,6 +148,4 @@
         app:layout_constraintVertical_bias="0.977"
         tools:ignore="SpeakableTextPresentCheck" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-   

@@ -2,13 +2,6 @@ package com.example.easycloset.Activities;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,12 +13,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.easycloset.Fragments.ClosetFragment;
 import com.example.easycloset.Fragments.HomeFragment;
 import com.example.easycloset.Fragments.ProfileFragment;
-import com.example.easycloset.R;
 import com.example.easycloset.Fragments.SuggestFragment;
 import com.example.easycloset.Fragments.UploadFragment;
+import com.example.easycloset.R;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setFragmentContainer(Fragment fragment) {
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.flContainer, fragment).commit();
     }
 
     @Override

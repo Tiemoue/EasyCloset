@@ -40,6 +40,10 @@ public class Queries {
     String bottom;
     String foot;
 
+    public Queries(){
+
+    }
+
     public Queries(ImageView outerLayer, ImageView baseLayer, ImageView pants, ImageView feet, Context context) {
         this.outerLayer = outerLayer;
         this.baseLayer = baseLayer;

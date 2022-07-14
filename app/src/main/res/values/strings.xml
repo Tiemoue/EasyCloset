@@ -59,15 +59,26 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#00695C</color>
     <color name="colorAccent">#FF5722</color>
-<string name="login">Login</string>
-<string name="e_mail">Email</string>
-<string name="tag">Let\'s get you dressed</string>
-<string name="swipe_right_for_login">Swipe Right for Login</string>
-<string name="register">Register</string>
-<string name="re_type_password">Re-type Password</string>
-<string name="your_name">Full Name</string>
+    <string name="login">Login</string>
+    <string name="e_mail">Email</string>
+    <string name="tag">Let\'s get you dressed</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
     <string name="swipe_left_for_register">swipe left for register</string>
     <string name="_75f">75F</string>
     <string name="todo">TODO</string>
+    <string name="coat">Coat</string>
+    <string name="jacket">Jacket</string>
+    <string name="sweater">Sweater</string>
+    <string name="hoodie">Hoodie</string>
+    <string name="t_shirt">T-shirt</string>
+    <string name="joggers">Joggers</string>
+    <string name="pants">Pants</string>
+    <string name="shorts">Shorts</string>
+    <string name="boots">Boots</string>
+    <string name="sneakers">Sneakers</string>
+    <string name="slides">Slides</string>
 </resources>
 

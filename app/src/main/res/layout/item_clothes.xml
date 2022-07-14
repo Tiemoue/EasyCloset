@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/et_custom"
     android:layout_height="wrap_content">
+
+
 
 
     <RelativeLayout
@@ -11,6 +15,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+
         android:layout_marginBottom="20dp">
 
         <ImageView
@@ -24,29 +29,43 @@
             android:id="@+id/tvTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/ivPoster"
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
-            android:layout_alignTop="@id/ivPoster"
             android:layout_toEndOf="@+id/ivPoster"
             android:fontFamily="sans-serif-smallcaps"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="24sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             tools:text="Test Title" />
+
+
+        <TextView
+            android:id="@+id/tvMerchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/BuyBtn"
+            android:layout_alignBottom="@+id/BuyBtn"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/ivPoster"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/colorAccent"
+            tools:text="Test Overview" />
 
         <TextView
             android:id="@+id/tvOverview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTittle"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+            android:layout_marginStart="203dp"
+            android:layout_marginTop="14dp"
             android:layout_marginBottom="10dp"
             android:layout_toEndOf="@+id/ivPoster"
             android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
             tools:text="Test Overview" />
-
 
         <Button
             android:id="@+id/BuyBtn"
@@ -62,4 +81,5 @@
             android:textSize="10sp" />
 
     </RelativeLayout>
+
 </RelativeLayout>

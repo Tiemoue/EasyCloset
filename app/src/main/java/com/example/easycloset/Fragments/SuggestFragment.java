@@ -1,37 +1,44 @@
 package com.example.easycloset.Fragments;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.easycloset.Activities.ClothesActivity;
 import com.example.easycloset.Activities.MainActivity;
-import com.example.easycloset.Models.Item;
 import com.example.easycloset.Models.Suggest;
 import com.example.easycloset.Models.Weather;
 import com.example.easycloset.Queries;
 import com.example.easycloset.R;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseQuery;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.TimeZone;
 
 public class SuggestFragment extends Fragment {
@@ -94,8 +101,16 @@ public class SuggestFragment extends Fragment {
 //        progressDialog.setTitle("Generating Outfit...");
 //        progressDialog.setCancelable(false);
 //        progressDialog.show();
+        verifyStoragePermission(activity);
+        FloatingActionButton btnShare = view.findViewById(R.id.floatingShareAction);
         Queries queries = new Queries(outerLayer, baseLayer, pants, feet, getContext());
-        queries.multipleQueries("jacket", "t-shirt", "jogger", "sneaker");
+        queries.multipleQueries("sweater", "t-shirt", "jogger", "sneakers");
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeScreenShot(activity.getWindow().getDecorView());
+            }
+        });
     }
 
 
@@ -107,35 +122,85 @@ public class SuggestFragment extends Fragment {
         progressDialog.dismiss();
         if (suggestions.getOuter() != null) {
             Glide.with(requireContext()).load(suggestions.getOuter().getUrl()).into(outerLayer);
-        } else {
-            tvOuter.setText(R.string.outer_not_found);
-            tvOuter.setTextSize(10);
-            Glide.with(requireContext()).load(R.drawable.notfound).into(outerLayer);
+
         }
 
         if (suggestions.getBase() != null) {
             Glide.with(requireContext()).load(suggestions.getBase().getUrl()).into(baseLayer);
-        } else {
-            tvBase.setText(R.string.base_not_found);
-            tvBase.setTextSize(10);
-            Glide.with(requireContext()).load(R.drawable.notfound).into(baseLayer);
+
         }
 
         if (suggestions.getBottom() != null) {
             Glide.with(requireContext()).load(suggestions.getBottom().getUrl()).into(pants);
-        } else {
-            tvBottom.setText(R.string.bottom_not_found);
-            tvBottom.setTextSize(10);
-            Glide.with(requireContext()).load(R.drawable.notfound).into(pants);
+
         }
 
         if (suggestions.getFoot() != null) {
             Glide.with(requireContext()).load(suggestions.getFoot().getUrl()).into(feet);
-        } else {
-            tvFeet.setText(R.string.not_found_foot);
-            tvFeet.setTextSize(10);
-            Glide.with(requireContext()).load(R.drawable.notfound).into(feet);
         }
+    }
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final String[] PERMISSION_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
+
+    public static void verifyStoragePermission(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSION_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE);
+        }
+    }
+
+    private void takeScreenShot(View view) {
+        Date date = new Date();
+        CharSequence format = android.text.format.DateFormat.format("MM-dd-yyyy_hh:mm:ss", date);
+        try {
+            File mainDir = new File(
+                    requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "FilShare");
+            if (!mainDir.exists()) {
+                boolean mkdir = mainDir.mkdir();
+            }
+            String path = mainDir + "/" + "TrendOceans" + "-" + format + ".jpeg";
+            view.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+            view.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(path);
+            FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Toast.makeText(activity, "Took a screen shot", Toast.LENGTH_SHORT).show();
+
+            shareScreenShot(imageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void shareScreenShot(File imageFile) {
+        Uri uri = FileProvider.getUriForFile(requireContext(), "com.codepath.fileprovider.easycloset", imageFile);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Download Application from Instagram");
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        Intent chooser = Intent.createChooser(intent, "Share File");
+
+        List<ResolveInfo> resInfoList = getContext().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+
+        for (ResolveInfo resolveInfo : resInfoList) {
+            String packageName = resolveInfo.activityInfo.packageName;
+            getContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        startActivity(chooser);
     }
 
 }

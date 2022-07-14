@@ -50,17 +50,20 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         TextView tvTitle;
         TextView tvDescription;
         ImageView ivClothImg;
+        TextView tvMerchant;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTittle);
             tvDescription = itemView.findViewById(R.id.tvOverview);
             ivClothImg = itemView.findViewById(R.id.ivPoster);
+            tvMerchant = itemView.findViewById(R.id.tvMerchant);
         }
 
         public void bind(Clothes Clothes) {
             tvTitle.setText(Clothes.getTitle());
             tvDescription.setText(Clothes.getPrice());
+            tvMerchant.setText(Clothes.getMerchant());
             String imageUrl;
             imageUrl = Clothes.getImage();
             Glide.with(context).load(imageUrl).into(ivClothImg);

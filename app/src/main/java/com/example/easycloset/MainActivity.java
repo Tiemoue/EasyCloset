@@ -34,6 +34,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
+    private final int REQUEST_CODE = 7;
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment();
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void setFragmentContainer(Fragment fragment) {
+    private void setFragmentContainer(Fragment fragment) {
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             assert getFragmentManager() != null;
             setFragmentContainer(closetFragment);
             closetFragment.queryPosts();

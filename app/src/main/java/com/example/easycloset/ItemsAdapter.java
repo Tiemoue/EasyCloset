@@ -21,6 +21,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
 
     private final Context context;
     private final List<Item> items;
+    private final int REQUEST_CODE = 7;
 
     public ItemsAdapter(Context context, List<Item> items) {
         this.context = context;
@@ -79,7 +80,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             if (position != RecyclerView.NO_POSITION) {
                 Intent intent = new Intent(context, ItemDetailActivity.class);
                 intent.putExtra(Item.class.getSimpleName(), items.get(position));
-                ((MainActivity) context).startActivityForResult(intent, 1);
+                ((MainActivity) context).startActivityForResult(intent, REQUEST_CODE);
             }
         }
     }

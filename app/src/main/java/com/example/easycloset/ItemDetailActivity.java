@@ -29,6 +29,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         TextView tvDate = findViewById(R.id.tvDateAdded);
         ImageButton btnDelete = findViewById(R.id.ibDelete);
 
+        assert getIntent().getParcelableExtra(Item.class.getSimpleName()) != null;
         Item item = getIntent().getParcelableExtra(Item.class.getSimpleName());
 
         Date createdAt = item.getCreatedAt();

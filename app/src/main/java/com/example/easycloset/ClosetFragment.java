@@ -52,7 +52,12 @@ public class ClosetFragment extends Fragment {
         progressDialog.show();
         queryPosts();
         Button btnAddClothes = view.findViewById(R.id.btAddClothes);
-        btnAddClothes.setOnClickListener(v -> activity.setFragmentContainer(activity.getUploadFragment()));
+        btnAddClothes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.setFragmentContainer(activity.getUploadFragment());
+            }
+        });
     }
 
     public ItemsAdapter getAdapter() {

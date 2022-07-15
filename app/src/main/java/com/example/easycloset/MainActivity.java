@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Constant constant;
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
-    private final ClosetFragment closetFragment = new ClosetFragment();
+    private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
     private final UploadFragment uploadFragment = new UploadFragment(this);

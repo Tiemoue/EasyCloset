@@ -1,15 +1,7 @@
 package com.example.easycloset;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.parse.ParseFile;
@@ -32,8 +23,6 @@ import java.io.File;
 
 public class UploadFragment extends Fragment {
 
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
-    public static String TAG = ".CameraActivity";
     private EditText etColour;
     private ImageView ivPicture;
     private File photoFile;
@@ -44,7 +33,7 @@ public class UploadFragment extends Fragment {
     }
 
     public UploadFragment(MainActivity mainActivity) {
-        activity = mainActivity;
+        this.activity = mainActivity;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +49,7 @@ public class UploadFragment extends Fragment {
         ivPicture = view.findViewById(R.id.ivPicture);
         Spinner spCategory = view.findViewById(R.id.spCategory);
         Button btnCloset = view.findViewById(R.id.btCloset);
+        Camera camera = new Camera(getContext(), photoFile);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -76,7 +66,7 @@ public class UploadFragment extends Fragment {
             }
         });
 
-        btnTakePicture.setOnClickListener(v -> launchCamera());
+        btnTakePicture.setOnClickListener(v -> camera.launchCamera());
 
         btnCloset.setOnClickListener(v -> activity.setFragmentContainer(activity.getClosetFragment()));
 
@@ -94,23 +84,13 @@ public class UploadFragment extends Fragment {
         });
     }
 
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                ivPicture.setImageBitmap(takenImage);
-            } else { // Result was a failure
-                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
-        }
+    public File getPhotoFile() {
+        return photoFile;
     }
 
+    public ImageView getIvPicture() {
+        return ivPicture;
+    }
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -128,6 +108,7 @@ public class UploadFragment extends Fragment {
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
                 activity.getClosetFragment().getAllItems().add(0, item);
                 activity.getClosetFragment().getAdapter().notifyDataSetChanged();
+                activity.getClosetFragment().queryPosts();
                 activity.setFragmentContainer(activity.getClosetFragment());
             }
         });

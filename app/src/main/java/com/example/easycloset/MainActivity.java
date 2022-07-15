@@ -6,6 +6,8 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private final ClosetFragment closetFragment = new ClosetFragment();
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
+    private final UploadFragment uploadFragment = new UploadFragment(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
     public SuggestFragment getSuggestFragment() {
         return suggestFragment;
+    }
+
+    public UploadFragment getUploadFragment() {
+        return uploadFragment;
     }
 
     public void setFragmentContainer(Fragment fragment) {
@@ -216,6 +223,18 @@ public class MainActivity extends AppCompatActivity {
             assert getFragmentManager() != null;
             setFragmentContainer(closetFragment);
             closetFragment.queryPosts();
+        }
+
+        if (requestCode == constant.getCAPTURE_IMAGE_ACTIVITY_REQUEST_CODE()) {
+            if (resultCode == RESULT_OK) {
+                // by this point we have the camera photo on disk
+                Bitmap takenImage = BitmapFactory.decodeFile(uploadFragment.getPhotoFile().getAbsolutePath());
+                // RESIZE BITMAP, see section below
+                // Load the taken image into a preview
+                uploadFragment.getIvPicture().setImageBitmap(takenImage);
+            } else { // Result was a failure
+                Toast.makeText(uploadFragment.getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

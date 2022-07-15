@@ -22,7 +22,7 @@ public class Camera {
         this.photoFile = photoFile;
     }
 
-    private void launchCamera() {
+    public void launchCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
         String photoFileName = "photo.jpg";

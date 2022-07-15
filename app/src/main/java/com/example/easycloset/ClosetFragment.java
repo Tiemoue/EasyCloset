@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,6 +51,13 @@ public class ClosetFragment extends Fragment {
         progressDialog.setTitle(getString(R.string.updating_closet));
         progressDialog.show();
         queryPosts();
+        Button addBtn = view.findViewById(R.id.btAddClothes);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.setFragmentContainer(activity.getUploadFragment());
+            }
+        });
     }
 
     public ItemsAdapter getAdapter() {

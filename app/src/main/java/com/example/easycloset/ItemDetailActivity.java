@@ -18,6 +18,8 @@ import java.util.Date;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
+    private Item item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +31,11 @@ public class ItemDetailActivity extends AppCompatActivity {
         TextView tvDate = findViewById(R.id.tvDateAdded);
         ImageButton btnDelete = findViewById(R.id.ibDelete);
 
-        assert getIntent().getParcelableExtra(Item.class.getSimpleName()) != null;
-        Item item = getIntent().getParcelableExtra(Item.class.getSimpleName());
+        if (getIntent().getParcelableExtra(Item.class.getSimpleName()) != null) {
+            item = getIntent().getParcelableExtra(Item.class.getSimpleName());
+        } else {
+            finish();
+        }
 
         Date createdAt = item.getCreatedAt();
         String time = Item.Time(createdAt);

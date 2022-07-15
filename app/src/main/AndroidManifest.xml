@@ -50,18 +50,21 @@
             android:name=".Activities.MainActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="com.codepath.fileprovider.easycloset"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/fileprovider" />-->
-<!--        </provider>-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.codepath.fileprovider.easycloset"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider4644553298981631"

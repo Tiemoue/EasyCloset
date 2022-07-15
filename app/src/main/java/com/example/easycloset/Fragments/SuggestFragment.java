@@ -1,5 +1,7 @@
 package com.example.easycloset.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,6 +32,11 @@ import com.example.easycloset.Models.Suggest;
 import com.example.easycloset.Models.Weather;
 import com.example.easycloset.Queries;
 import com.example.easycloset.R;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -111,6 +119,7 @@ public class SuggestFragment extends Fragment {
                 takeScreenShot(activity.getWindow().getDecorView());
             }
         });
+
     }
 
 
@@ -157,6 +166,45 @@ public class SuggestFragment extends Fragment {
         }
     }
 
+    public void setupFacebookShare(Bitmap bitmap) {
+        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.boots);
+        ShareDialog shareDialog;
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        shareDialog = new ShareDialog(this);
+
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .setCaption("TESTING")
+                .build();
+//
+//
+        if (ShareDialog.canShow(SharePhotoContent.class)) {
+            SharePhotoContent content = new SharePhotoContent.Builder()
+                    .addPhoto(photo)
+                    .build();
+            ShareDialog.show(activity, content);
+        }
+
+
+//        if (ShareDialog.canShow(ShareLinkContent.class)) {
+//            ShareLinkContent content = new ShareLinkContent.Builder()
+//                    .setContentUrl(Uri.parse("https://developers.facebook.com"))
+//                    .setQuote("Connect on a global scale.")
+//                    .build();
+//
+//            shareDialog.show(content);
+//        }
+//
+//        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+//                .setContentTitle("Title")
+//                .setContentDescription(
+//                        "\"Body Of Test Post\"")
+//                .setContentUrl(Uri.parse("http://facebook.com"))
+//                .build();
+//
+//        shareDialog.show(linkContent);
+    }
+
     private void takeScreenShot(View view) {
         Date date = new Date();
         CharSequence format = android.text.format.DateFormat.format("MM-dd-yyyy_hh:mm:ss", date);
@@ -178,7 +226,12 @@ public class SuggestFragment extends Fragment {
             fileOutputStream.close();
             Toast.makeText(activity, "Took a screen shot", Toast.LENGTH_SHORT).show();
 
-            shareScreenShot(imageFile);
+            ; // Your image file
+            String filePath = imageFile.getPath();
+            Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
+            setupFacebookShare(bitmap2);
+
+//            shareScreenShot(imageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,5 +255,6 @@ public class SuggestFragment extends Fragment {
         }
         startActivity(chooser);
     }
+
 
 }

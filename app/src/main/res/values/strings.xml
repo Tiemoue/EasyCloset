@@ -20,6 +20,8 @@
     <string name="profile_fragment">Profile Fragment</string>
     <string name="msg">Good Morning</string>
     <string name="add_clothes">Add clothes</string>
+    <string name="facebook_app_id">4644553298981631</string>
+
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>

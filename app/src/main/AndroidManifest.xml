@@ -12,6 +12,11 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider"
+            android:exported="false" />
+    </queries>
+
+    <queries>
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -45,15 +50,22 @@
             android:name=".Activities.MainActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="com.codepath.fileprovider.easycloset"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/fileprovider" />-->
+<!--        </provider>-->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
         <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.codepath.fileprovider.easycloset"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/fileprovider" />
-        </provider>
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider4644553298981631"
+            android:exported="false"/>
         <activity
             android:name=".Activities.SplashScreenActivity"
             android:exported="true"

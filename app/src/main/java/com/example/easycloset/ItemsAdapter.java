@@ -1,6 +1,7 @@
 package com.example.easycloset;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import com.parse.ParseFile;
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
+
     private final Context context;
     private final List<Item> items;
+    private Constant constant;
 
     public ItemsAdapter(Context context, List<Item> items) {
         this.context = context;
@@ -53,7 +56,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView tvType;
         private final ImageView ivClothesImage;
@@ -62,6 +65,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             super(itemView);
             tvType = itemView.findViewById(R.id.tvType);
             ivClothesImage = itemView.findViewById(R.id.ivClotheImage);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Item item) {
@@ -69,5 +73,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             ParseFile image = item.getImage();
             Glide.with(context).load(image.getUrl()).transform(new RoundedCorners(90)).into(ivClothesImage);
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                Intent intent = new Intent(context, ItemDetailActivity.class);
+                intent.putExtra(Item.class.getSimpleName(), items.get(position));
+                ((MainActivity) context).startActivityForResult(intent, constant.getDELETE_ITEM_REQUEST_CODE());
+            }
+        }
     }
 }
+

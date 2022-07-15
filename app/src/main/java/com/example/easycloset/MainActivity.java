@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +34,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
+    private Constant constant;
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment();
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                             fragment = profileFragment;
                             break;
                     }
-                    fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                    setFragmentContainer(fragment);
                     return true;
                 });
         // Set default selection
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
             logOutUser();
         }
         return true;
+    }
+
+    private void setFragmentContainer(Fragment fragment) {
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 
     private void logOutUser() {
@@ -191,4 +197,13 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == constant.getDELETE_ITEM_REQUEST_CODE() && resultCode == RESULT_OK) {
+            assert getFragmentManager() != null;
+            setFragmentContainer(closetFragment);
+            closetFragment.queryPosts();
+        }
+    }
 }

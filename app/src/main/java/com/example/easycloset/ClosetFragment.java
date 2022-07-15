@@ -71,6 +71,7 @@ public class ClosetFragment extends Fragment {
             }
             progressDialog.dismiss();
             // save received posts to list and notify adapter of new data
+            allItems.clear();
             allItems.addAll(items);
             adapter.notifyDataSetChanged();
         });

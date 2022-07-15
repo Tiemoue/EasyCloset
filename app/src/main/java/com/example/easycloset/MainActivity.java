@@ -89,7 +89,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setFragmentContainer(Fragment fragment) {
+    public ClosetFragment getClosetFragment() {
+        return closetFragment;
+    }
+
+    public ProfileFragment getProfileFragment() {
+        return profileFragment;
+    }
+
+    public SuggestFragment getSuggestFragment() {
+        return suggestFragment;
+    }
+
+    public void setFragmentContainer(Fragment fragment) {
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 

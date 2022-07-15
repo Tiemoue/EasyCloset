@@ -52,11 +52,11 @@ public class ClosetFragment extends Fragment {
         queryPosts();
     }
 
-    private ItemsAdapter getAdapter() {
+    public ItemsAdapter getAdapter() {
         return adapter;
     }
 
-    private List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         return allItems;
     }
 

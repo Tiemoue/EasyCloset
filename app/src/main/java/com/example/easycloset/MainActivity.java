@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
     private final UploadFragment uploadFragment = new UploadFragment(this);
-    String imageFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

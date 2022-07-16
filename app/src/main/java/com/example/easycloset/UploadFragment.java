@@ -49,7 +49,7 @@ public class UploadFragment extends Fragment {
         ivPicture = view.findViewById(R.id.ivPicture);
         Spinner spCategory = view.findViewById(R.id.spCategory);
         Button btnCloset = view.findViewById(R.id.btCloset);
-        Camera camera = new Camera(getContext(), photoFile);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -66,7 +66,6 @@ public class UploadFragment extends Fragment {
             }
         });
 
-        btnTakePicture.setOnClickListener(v -> camera.launchCamera());
 
         btnCloset.setOnClickListener(v -> activity.setFragmentContainer(activity.getClosetFragment()));
 

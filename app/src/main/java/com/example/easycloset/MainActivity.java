@@ -6,8 +6,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -36,13 +34,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
-    private Constant constant;
+    private final Constant constant = new Constant();
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
     private final UploadFragment uploadFragment = new UploadFragment(this);
+    String imageFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public void setFragmentContainer(Fragment fragment) {
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
+
 
     private void logOutUser() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -223,18 +223,6 @@ public class MainActivity extends AppCompatActivity {
             assert getFragmentManager() != null;
             setFragmentContainer(closetFragment);
             closetFragment.queryPosts();
-        }
-
-        if (requestCode == constant.getCAPTURE_IMAGE_ACTIVITY_REQUEST_CODE()) {
-            if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(uploadFragment.getPhotoFile().getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                uploadFragment.getIvPicture().setImageBitmap(takenImage);
-            } else { // Result was a failure
-                Toast.makeText(uploadFragment.getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 }

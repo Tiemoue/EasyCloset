@@ -5,64 +5,42 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.SuggestFragment">
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDate"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentTop="true"-->
+    <!--        android:layout_marginStart="123dp"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:paddingTop="15dp"-->
+    <!--        android:text="@string/date_added"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textAllCaps="true"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="15sp"-->
+    <!--        android:textStyle="bold" />-->
+
+    <!--    <View-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="2dp"-->
+    <!--        android:layout_alignStart="@+id/tvDate"-->
+    <!--        android:layout_alignTop="@+id/tvDate"-->
+    <!--        android:layout_alignEnd="@+id/tvDate"-->
+    <!--        android:layout_alignBottom="@+id/tvDate"-->
+    <!--        android:layout_marginStart="0dp"-->
+    <!--        android:layout_marginTop="52dp"-->
+    <!--        android:layout_marginEnd="-15dp"-->
+    <!--        android:layout_marginBottom="-12dp"-->
+    <!--        android:background="@color/black" />-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="5dp"
-        android:paddingTop="15dp"
-        android:text="@string/date_added"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:layout_alignStart="@+id/tvDate"
-        android:layout_alignTop="@+id/tvDate"
-        android:layout_alignEnd="@+id/tvDate"
-        android:layout_alignBottom="@+id/tvDate"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="-15dp"
-        android:layout_marginBottom="-12dp"
-        android:background="@color/black" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        android:paddingStart="80dp">
-
-        <TextView
-            android:id="@+id/tvWeatherTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/_75f"
-            android:textSize="15sp" />
-
-        <ImageView
-            android:id="@+id/dayState"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/weather_cloudy_icon" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -70,10 +48,87 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvWeatherTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:text="Today"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="cloudy"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_cloudy_day" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_75f"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/et_custom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/Top"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="TOP"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+
             <ImageView
                 android:id="@+id/ivOuterLayer"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:clickable="true"
                 android:layout_marginStart="40dp" />
 
 
@@ -82,7 +137,10 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/outer_layer"
+                android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -96,11 +154,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvBase"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="BASE"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
 
             <ImageView
                 android:id="@+id/ivBaseLayer"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:clickable="true"
                 android:layout_marginStart="70dp" />
 
             <TextView
@@ -108,7 +181,10 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/base_layer"
+                android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -122,7 +198,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/et_custom"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -130,11 +207,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="BOTTOM"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
 
             <ImageView
                 android:id="@+id/ivPants"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:clickable="true"
                 android:layout_marginStart="40dp" />
 
             <TextView
@@ -142,7 +234,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/bottom_layer"
+                android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -155,10 +250,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+            <TextView
+                android:id="@+id/Feet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="FEET"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/ivFeet"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:clickable="true"
                 android:layout_marginStart="70dp" />
 
             <TextView
@@ -166,7 +277,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/feet"
+                android:textAllCaps="true"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
@@ -186,7 +300,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="-3dp"
-        android:layout_marginBottom="98dp"
+        android:layout_marginBottom="62dp"
         android:text="RECOMMENDED FOR TODAY"
         android:textAlignment="center"
         android:textColor="@color/black"

@@ -2,9 +2,12 @@ package com.example.easycloset.Adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +54,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         TextView tvDescription;
         ImageView ivClothImg;
         TextView tvMerchant;
+        Button btnBuy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,15 +62,26 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
             tvDescription = itemView.findViewById(R.id.tvOverview);
             ivClothImg = itemView.findViewById(R.id.ivPoster);
             tvMerchant = itemView.findViewById(R.id.tvMerchant);
+            btnBuy = itemView.findViewById(R.id.buyBtn);
+
         }
 
-        public void bind(Clothes Clothes) {
-            tvTitle.setText(Clothes.getTitle());
-            tvDescription.setText(Clothes.getPrice());
-            tvMerchant.setText(Clothes.getMerchant());
+        public void bind(Clothes clothes) {
+            tvTitle.setText(clothes.getTitle());
+            tvDescription.setText(clothes.getPrice());
+            tvMerchant.setText(clothes.getMerchant());
             String imageUrl;
-            imageUrl = Clothes.getImage();
+            imageUrl = clothes.getImage();
             Glide.with(context).load(imageUrl).into(ivClothImg);
+
+            btnBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri uri = Uri.parse(clothes.getLink());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    context.startActivity(intent);
+                }
+            });
         }
 
     }

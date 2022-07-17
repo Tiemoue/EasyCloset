@@ -9,6 +9,10 @@
         <entry key="app/src/main/res/drawable/btn_custom.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/card_bg.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/et_custom.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_circle.xml" value="0.2525" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_change_circle_24.xml" value="0.2525" />
+        <entry key="app/src/main/res/drawable/ic_baseline_checkroom_24.xml" value="0.2525" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.191" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.4775" />
@@ -20,14 +24,16 @@
         <entry key="app/src/main/res/drawable/ic_baseline_wb_sunny_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_day.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3555" />
+        <entry key="app/src/main/res/drawable/ic_thermometer_temperature.xml" value="0.2525" />
         <entry key="app/src/main/res/drawable/ic_weather_sunset.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/profile.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/shape_button.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/weather_app_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_additem.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.3745471014492754" />
-        <entry key="app/src/main/res/layout/activity_clothes.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_clothes.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.2667572463768116" />
-        <entry key="app/src/main/res/layout/activity_item_detail.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout/activity_item_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.24324324324324326" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
@@ -43,8 +49,8 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.20552147239263804" />
         <entry key="app/src/main/res/layout/fragment_share_image.xml" value="0.3887441375716519" />
-        <entry key="app/src/main/res/layout/fragment_suggest.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.3745471014492754" />
+        <entry key="app/src/main/res/layout/fragment_suggest.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_clothes.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_items.xml" value="0.25" />
         <entry key="app/src/main/res/layout/liked_items.xml" value="0.25" />

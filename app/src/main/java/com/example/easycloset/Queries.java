@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
@@ -32,24 +33,30 @@ public class Queries {
 
     ImageView outerLayer;
     ImageView baseLayer;
-    ImageView pants;
+    ImageView ivBottom;
     ImageView feet;
+    TextView tvOuter, tvBase, tvFeet, tvBottom;
     Context context;
     String outer;
     String base;
     String bottom;
     String foot;
+    Suggest suggest = new Suggest();
 
-    public Queries(){
+    public Queries() {
 
     }
 
-    public Queries(ImageView outerLayer, ImageView baseLayer, ImageView pants, ImageView feet, Context context) {
+    public Queries(ImageView outerLayer, ImageView baseLayer, ImageView ivBottom, ImageView feet, TextView tvOuter, TextView tvBase, TextView tvBottom, TextView tvFeet, Context context) {
         this.outerLayer = outerLayer;
         this.baseLayer = baseLayer;
-        this.pants = pants;
+        this.ivBottom = ivBottom;
         this.feet = feet;
         this.context = context;
+        this.tvOuter = tvOuter;
+        this.tvBase = tvBase;
+        this.tvFeet = tvFeet;
+        this.tvBottom = tvBottom;
     }
 
     public String getOuter() {
@@ -100,12 +107,12 @@ public class Queries {
         this.baseLayer = baseLayer;
     }
 
-    public ImageView getPants() {
-        return pants;
+    public ImageView getIvBottom() {
+        return ivBottom;
     }
 
-    public void setPants(ImageView pants) {
-        this.pants = pants;
+    public void setIvBottom(ImageView ivBottom) {
+        this.ivBottom = ivBottom;
     }
 
     public ImageView getFeet() {
@@ -143,71 +150,93 @@ public class Queries {
                     return;
                 }
 
-                List<ParseFile> outerArray = new ArrayList<>();
-                List<ParseFile> baseArray = new ArrayList<>();
-                List<ParseFile> bottomArray = new ArrayList<>();
-                List<ParseFile> feetArray = new ArrayList<>();
+                List<Item> outerArray = new ArrayList<>();
+                List<Item> baseArray = new ArrayList<>();
+                List<Item> bottomArray = new ArrayList<>();
+                List<Item> feetArray = new ArrayList<>();
 
                 for (Item object : objects) {
                     if (object.getCategory().equals(outer)) {
-                        outerArray.add(object.getImage());
+                        outerArray.add(object);
                     } else if (object.getCategory().equals(base)) {
-                        baseArray.add(object.getImage());
+                        baseArray.add(object);
                     } else if (object.getCategory().equals(bottom)) {
-                        bottomArray.add(object.getImage());
+                        bottomArray.add(object);
 
                     } else if (object.getCategory().equals(foot)) {
-                        feetArray.add(object.getImage());
+                        feetArray.add(object);
                     }
                 }
 
-                Suggest suggest = new Suggest();
                 Random random = new Random();
 
-
                 if (outerArray.size() != 0) {
-                    ParseFile outerItem = outerArray.get(random.nextInt(outerArray.size()));
-                    suggest.setOuter(outerItem);
-                    generateFit(outerItem, outerLayer);
+                    Item outerItem = outerArray.get(random.nextInt(outerArray.size()));
+                    ParseFile image = outerItem.getImage();
+                    suggest.setOuter(outerItem.getCategory());
+                    suggest.setOuterColor(outerItem.getColour());
+                    suggest.setOuterImgUrl(outerItem.getImage().getUrl());
+                    generateFit(image, outerLayer);
+                    setText(tvOuter, outerItem.getColour() + " " + outerItem.getCategory());
                 } else {
                     getItem(outer, outerLayer);
-                    makeBtn(outerLayer, outer);
+                    suggest.setOuter(outer);
+
                 }
 
                 if (baseArray.size() != 0) {
-                    ParseFile baseItem = baseArray.get(random.nextInt(baseArray.size()));
-                    suggest.setBase(baseItem);
-                    generateFit(baseItem, baseLayer);
+                    Item baseItem = baseArray.get(random.nextInt(baseArray.size()));
+                    ParseFile image = baseItem.getImage();
+                    suggest.setBase(baseItem.getCategory());
+                    suggest.setBaseImgUrl(baseItem.getImage().getUrl());
+                    suggest.setBaseColor(baseItem.getColour());
+                    generateFit(image, baseLayer);
+                    setText(tvBase, baseItem.getColour() + " " + baseItem.getCategory());
                 } else {
                     getItem(base, baseLayer);
-                    makeBtn(baseLayer, base);
+                    suggest.setBase(base);
                 }
-
 
                 if (bottomArray.size() != 0) {
-                    ParseFile bottomItem = bottomArray.get(random.nextInt(bottomArray.size()));
-                    suggest.setBottom(bottomItem);
-                    generateFit(bottomItem, pants);
+                    Item bottomItem = bottomArray.get(random.nextInt(bottomArray.size()));
+                    ParseFile image = bottomItem.getImage();
+                    suggest.setBottom(bottomItem.getCategory());
+                    suggest.setBottomImgUrl(image.getUrl());
+                    suggest.setBottomColor(bottomItem.getColour());
+                    generateFit(image, ivBottom);
+                    setText(tvBottom, bottomItem.getColour() + " " + bottomItem.getCategory());
                 } else {
-                    getItem(bottom, pants);
-                    makeBtn(pants, bottom);
+                    getItem(bottom, ivBottom);
+                    setText(tvBottom, "Not Available");
+                    suggest.setBottom(bottom);
                 }
-
 
                 if (feetArray.size() != 0) {
-                    ParseFile footItem = feetArray.get(random.nextInt(feetArray.size()));
-                    suggest.setFoot(footItem);
-                    generateFit(footItem, feet);
+                    Item feetItem = feetArray.get(random.nextInt(feetArray.size()));
+                    ParseFile image = feetItem.getImage();
+                    suggest.setFeet(feetItem.getCategory());
+                    suggest.setFeetImgUrl(image.getUrl());
+                    suggest.setFeetColor(feetItem.getColour());
+                    generateFit(image, feet);
+                    setText(tvFeet, feetItem.getColour() + " " + feetItem.getCategory());
                 } else {
                     getItem(foot, feet);
-                    makeBtn(feet, foot);
+                    suggest.setFeet(foot);
                 }
+                makeBtn(outerLayer, outer);
+                makeBtn(feet, foot);
+                makeBtn(ivBottom, bottom);
+                makeBtn(baseLayer, base);
             }
         });
     }
 
     public void generateFit(ParseFile outerItem, ImageView outerLayer) {
         Glide.with(context).load(outerItem.getUrl()).into(outerLayer);
+    }
+
+    public void setText(TextView textView, String s) {
+        textView.setText(s);
     }
 
     public void getItem(String item, ImageView outerLayer) {
@@ -244,13 +273,21 @@ public class Queries {
     }
 
     public void makeBtn(ImageView outerLayer, String outer) {
-        outerLayer.setClickable(true);
         outerLayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startClothes(outer);
             }
         });
+    }
+
+
+    public Suggest getSuggest() {
+        return suggest;
+    }
+
+    public void setSuggest(Suggest suggest) {
+        this.suggest = suggest;
     }
 }
 

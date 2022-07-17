@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import androidx.fragment.app.Fragment;
 import com.example.easycloset.Activities.MainActivity;
 import com.example.easycloset.Models.Item;
 import com.example.easycloset.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -59,11 +61,11 @@ public class UploadFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Button btnTakePicture = view.findViewById(R.id.btnTakePicture);
-        Button btnUpload = view.findViewById(R.id.btnUpload);
+        FloatingActionButton btnUpload = view.findViewById(R.id.floatingUploadAction);
         etColour = view.findViewById(R.id.etColour);
         ivPicture = view.findViewById(R.id.ivPicture);
         Spinner spCategory = view.findViewById(R.id.spCategory);
-        Button btnCloset = view.findViewById(R.id.btCloset);
+        ImageButton btnCloset = view.findViewById(R.id.btCloset);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);

@@ -1,7 +1,5 @@
 package com.example.easycloset.Fragments;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,27 +24,19 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.easycloset.Activities.ClothesActivity;
 import com.example.easycloset.Activities.MainActivity;
 import com.example.easycloset.Models.Suggest;
 import com.example.easycloset.Models.Weather;
 import com.example.easycloset.Queries;
 import com.example.easycloset.R;
-import com.facebook.FacebookSdk;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class SuggestFragment extends Fragment {
 
@@ -55,8 +44,10 @@ public class SuggestFragment extends Fragment {
     private ImageView baseLayer, outerLayer, feet, pants;
     private TextView tvOuter, tvBase, tvFeet, tvBottom;
     private ProgressDialog progressDialog;
-    private Suggest suggestions;
+    private Suggest suggestions = new Suggest();
     private boolean shouldFetch = false;
+    Queries queries;
+
 
     @Override
     public void onResume() {
@@ -83,17 +74,16 @@ public class SuggestFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy");
-        df.setTimeZone(TimeZone.getDefault());
-        String date = df.format(Calendar.getInstance().getTime());
-        TextView tvDate = view.findViewById(R.id.tvDate);
-        tvDate.setText(date);
+        verifyStoragePermission(activity);
 
         Weather suggestWeather = activity.getHomeFragment().getWeather();
 
         TextView tvTemp = view.findViewById(R.id.tvWeatherTemp);
-        tvTemp.setText(String.format("Today  %s℉", suggestWeather.getTemp()));
+        tvTemp.setText(String.format("%s℉", suggestWeather.getTemp()));
+        TextView location = view.findViewById(R.id.location);
+        location.setText(suggestWeather.getCityName());
+        TextView main = view.findViewById(R.id.main);
+        main.setText(suggestWeather.getCast());
 
         baseLayer = view.findViewById(R.id.ivBaseLayer);
         outerLayer = view.findViewById(R.id.ivOuterLayer);
@@ -106,13 +96,15 @@ public class SuggestFragment extends Fragment {
         tvBottom = view.findViewById(R.id.tvBottomLayer);
         progressDialog = new ProgressDialog(getContext());
 
-//        progressDialog.setTitle("Generating Outfit...");
-//        progressDialog.setCancelable(false);
-//        progressDialog.show();
-        verifyStoragePermission(activity);
+
         FloatingActionButton btnShare = view.findViewById(R.id.floatingShareAction);
-        Queries queries = new Queries(outerLayer, baseLayer, pants, feet, getContext());
-        queries.multipleQueries("sweater", "t-shirt", "jogger", "sneakers");
+        queries = new Queries(outerLayer, baseLayer, pants, feet, tvOuter, tvBase, tvBottom, tvFeet, getContext());
+        if (!(shouldFetch)) {
+            queries.multipleQueries("sweater", "t-shirt", "jogger", "sneakers");
+            shouldFetch = true;
+            setSuggestions(queries.getSuggest());
+        }
+
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,25 +120,56 @@ public class SuggestFragment extends Fragment {
     }
 
     public void fetchData() {
-        progressDialog.dismiss();
-        if (suggestions.getOuter() != null) {
-            Glide.with(requireContext()).load(suggestions.getOuter().getUrl()).into(outerLayer);
-
+        queries.makeBtn(feet, suggestions.getFeet());
+        queries.makeBtn(outerLayer, suggestions.getOuter());
+        queries.makeBtn(baseLayer, suggestions.getBase());
+        queries.makeBtn(pants, suggestions.getBottom());
+        if (suggestions.getOuterColor() != null) {
+            Glide.with(requireContext()).load(suggestions.getOuterImgUrl()).into(outerLayer);
+            queries.setText(tvOuter, suggestions.getOuterColor() + " " + suggestions.getOuter());
+        } else {
+            queries.getItem(suggestions.getOuter(), outerLayer);
+            queries.setText(tvOuter, "Not Available");
         }
 
-        if (suggestions.getBase() != null) {
-            Glide.with(requireContext()).load(suggestions.getBase().getUrl()).into(baseLayer);
-
+        if (suggestions.getBaseColor() != null) {
+            Glide.with(requireContext()).load(suggestions.getBaseImgUrl()).into(baseLayer);
+            queries.setText(tvBase, suggestions.getBaseColor() + " " + suggestions.getBase());
+        } else {
+            queries.getItem(suggestions.getBase(), baseLayer);
+            queries.setText(tvBase, "Not Available");
         }
 
-        if (suggestions.getBottom() != null) {
-            Glide.with(requireContext()).load(suggestions.getBottom().getUrl()).into(pants);
-
+        if (suggestions.getBottomColor() != null) {
+            Glide.with(requireContext()).load(suggestions.getBottomImgUrl()).into(pants);
+            queries.setText(tvBottom, suggestions.getBottomColor() + " " + suggestions.getBottom());
+        } else {
+            queries.getItem(suggestions.getBottom(), pants);
+            queries.setText(tvBottom, "Not Available");
         }
 
-        if (suggestions.getFoot() != null) {
-            Glide.with(requireContext()).load(suggestions.getFoot().getUrl()).into(feet);
+        if (suggestions.getFeetColor() != null) {
+            Glide.with(requireContext()).load(suggestions.getFeetImgUrl()).into(feet);
+            queries.setText(tvFeet, suggestions.getFeetColor() + " " + suggestions.getFeet());
+        } else {
+            queries.getItem(suggestions.getFeet(), feet);
+            queries.setText(tvFeet, "Not Available");
         }
+    }
+
+    public void makeBtn(ImageView outerLayer, String outer) {
+        outerLayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startClothes(outer);
+            }
+        });
+    }
+
+    public void startClothes(String item) {
+        Intent intent = new Intent(requireContext(), ClothesActivity.class);
+        intent.putExtra("category", item);
+        requireContext().startActivity(intent);
     }
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -166,24 +189,24 @@ public class SuggestFragment extends Fragment {
         }
     }
 
-    public void setupFacebookShare(Bitmap bitmap) {
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.boots);
-        ShareDialog shareDialog;
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        shareDialog = new ShareDialog(this);
-
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .setCaption("TESTING")
-                .build();
+//    public void setupFacebookShare(Bitmap bitmap) {
+//        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.boots);
+//        ShareDialog shareDialog;
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        shareDialog = new ShareDialog(this);
 //
-//
-        if (ShareDialog.canShow(SharePhotoContent.class)) {
-            SharePhotoContent content = new SharePhotoContent.Builder()
-                    .addPhoto(photo)
-                    .build();
-            ShareDialog.show(activity, content);
-        }
+//        SharePhoto photo = new SharePhoto.Builder()
+//                .setBitmap(image)
+//                .setCaption("TESTING")
+//                .build();
+////
+////
+//        if (ShareDialog.canShow(SharePhotoContent.class)) {
+//            SharePhotoContent content = new SharePhotoContent.Builder()
+//                    .addPhoto(photo)
+//                    .build();
+//            ShareDialog.show(activity, content);
+//        }
 
 
 //        if (ShareDialog.canShow(ShareLinkContent.class)) {
@@ -203,7 +226,6 @@ public class SuggestFragment extends Fragment {
 //                .build();
 //
 //        shareDialog.show(linkContent);
-    }
 
     private void takeScreenShot(View view) {
         Date date = new Date();
@@ -227,11 +249,11 @@ public class SuggestFragment extends Fragment {
             Toast.makeText(activity, "Took a screen shot", Toast.LENGTH_SHORT).show();
 
             ; // Your image file
-            String filePath = imageFile.getPath();
-            Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
-            setupFacebookShare(bitmap2);
+//            String filePath = imageFile.getPath();
+//            Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
+//            setupFacebookShare(bitmap2);
 
-//            shareScreenShot(imageFile);
+            shareScreenShot(imageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -247,14 +269,12 @@ public class SuggestFragment extends Fragment {
 
         Intent chooser = Intent.createChooser(intent, "Share File");
 
-        List<ResolveInfo> resInfoList = getContext().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> resInfoList = requireContext().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
 
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
-            getContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            requireContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
         startActivity(chooser);
     }
-
-
 }

@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.easycloset.Activities.MainActivity;
-import com.example.easycloset.R;
 import com.example.easycloset.Models.Weather;
+import com.example.easycloset.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +63,6 @@ public class HomeFragment extends Fragment {
         progressDialog.setTitle("Fetching Weather...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-
         ImageButton btnSearch = view.findViewById(R.id.ivSearchBtn);
         EditText etCity = view.findViewById(R.id.etYourCity);
         tvCity = view.findViewById(R.id.tvCity);
@@ -134,6 +133,5 @@ public class HomeFragment extends Fragment {
                 Log.e("response from server", "error");
             }
         });
-
     }
 }

@@ -100,7 +100,7 @@ public class SuggestFragment extends Fragment {
         FloatingActionButton btnShare = view.findViewById(R.id.floatingShareAction);
         queries = new Queries(outerLayer, baseLayer, pants, feet, tvOuter, tvBase, tvBottom, tvFeet, getContext());
         if (!(shouldFetch)) {
-            queries.multipleQueries("sweater", "t-shirt", "jogger", "sneakers");
+            queries.checkWeather(suggestWeather);
             shouldFetch = true;
             setSuggestions(queries.getSuggest());
         }

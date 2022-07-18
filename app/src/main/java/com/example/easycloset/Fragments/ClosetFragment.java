@@ -40,6 +40,7 @@ public class ClosetFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        queryPosts();
     }
 
     public ClosetFragment(MainActivity mainActivity) {

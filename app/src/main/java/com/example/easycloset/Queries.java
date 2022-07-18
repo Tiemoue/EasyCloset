@@ -14,6 +14,7 @@ import com.example.easycloset.Models.Clothes;
 import com.example.easycloset.Models.Item;
 import com.example.easycloset.Models.Suggest;
 import com.example.easycloset.Models.User;
+import com.example.easycloset.Models.Weather;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -43,10 +44,6 @@ public class Queries {
     String foot;
     Suggest suggest = new Suggest();
 
-    public Queries() {
-
-    }
-
     public Queries(ImageView outerLayer, ImageView baseLayer, ImageView ivBottom, ImageView feet, TextView tvOuter, TextView tvBase, TextView tvBottom, TextView tvFeet, Context context) {
         this.outerLayer = outerLayer;
         this.baseLayer = baseLayer;
@@ -59,68 +56,19 @@ public class Queries {
         this.tvBottom = tvBottom;
     }
 
-    public String getOuter() {
-        return outer;
-    }
-
-    public void setOuter(String outer) {
-        this.outer = outer;
-    }
-
-    public String getBase() {
-        return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
-    }
-
-    public String getBottom() {
-        return bottom;
-    }
-
-    public void setBottom(String bottom) {
-        this.bottom = bottom;
-    }
-
-    public String getFoot() {
-        return foot;
-    }
-
-    public void setFoot(String foot) {
-        this.foot = foot;
-    }
-
-    public ImageView getOuterLayer() {
-        return outerLayer;
-    }
-
-    public void setOuterLayer(ImageView outerLayer) {
-        this.outerLayer = outerLayer;
-    }
-
-    public ImageView getBaseLayer() {
-        return baseLayer;
-    }
-
-    public void setBaseLayer(ImageView baseLayer) {
-        this.baseLayer = baseLayer;
-    }
-
-    public ImageView getIvBottom() {
-        return ivBottom;
-    }
-
-    public void setIvBottom(ImageView ivBottom) {
-        this.ivBottom = ivBottom;
-    }
-
-    public ImageView getFeet() {
-        return feet;
-    }
-
-    public void setFeet(ImageView feet) {
-        this.feet = feet;
+    public void checkWeather(Weather weather) {
+        int temp = Integer.parseInt(weather.getTemp());
+        if (temp < 30) {
+            multipleQueries("coat", "hoodie", "joggers", "boots");
+        } else if (temp < 50){
+            multipleQueries("jacket", "hoodie", "joggers", "sneakers");
+        }else if(temp < 60){
+            multipleQueries("hoodie", "sweater", "pants", "sneakers");
+        }else if (temp < 70){
+            multipleQueries("sweater", "t-shirt", "pants", "sneakers");
+        }else {
+            multipleQueries("sweater", "t-shirt", "shorts", "slides");
+        }
     }
 
     public void multipleQueries(String outer, String base, String bottom, String foot) {

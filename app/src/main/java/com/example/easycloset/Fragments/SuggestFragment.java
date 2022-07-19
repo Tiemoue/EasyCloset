@@ -1,5 +1,7 @@
 package com.example.easycloset.Fragments;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -193,25 +196,23 @@ public class SuggestFragment extends Fragment {
         }
     }
 
+
     public void setupFacebookShare(Bitmap bitmap) {
-        ShareDialog shareDialog;
-        FacebookSdk.sdkInitialize(activity.getApplicationContext());
-        shareDialog = new ShareDialog(this);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        ShareDialog shareDialog = new ShareDialog(this);
 
         SharePhoto photo = new SharePhoto.Builder()
                 .setBitmap(bitmap)
                 .setCaption("TESTING")
                 .build();
-//
-//
+
         if (ShareDialog.canShow(SharePhotoContent.class)) {
             SharePhotoContent content = new SharePhotoContent.Builder()
                     .addPhoto(photo)
                     .build();
             ShareDialog.show(activity, content);
         }
-
-
+    }
 
     private void takeScreenShot(View view) {
         Date date = new Date();
@@ -233,13 +234,11 @@ public class SuggestFragment extends Fragment {
             fileOutputStream.flush();
             fileOutputStream.close();
             Toast.makeText(activity, "Took a screen shot", Toast.LENGTH_SHORT).show();
-
             ; // Your image file
-//            String filePath = imageFile.getPath();
-//            Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
-//            setupFacebookShare(bitmap2);
-
-            shareScreenShot(imageFile);
+            String filePath = imageFile.getPath();
+            Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
+            setupFacebookShare(bitmap2);
+//            shareScreenShot(imageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -255,11 +254,11 @@ public class SuggestFragment extends Fragment {
 
         Intent chooser = Intent.createChooser(intent, "Share File");
 
-        List<ResolveInfo> resInfoList = requireContext().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> resInfoList = getContext().getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
 
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
-            requireContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            getContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
         startActivity(chooser);
     }

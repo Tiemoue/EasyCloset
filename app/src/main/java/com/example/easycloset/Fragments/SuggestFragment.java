@@ -30,6 +30,10 @@ import com.example.easycloset.Models.Suggest;
 import com.example.easycloset.Models.Weather;
 import com.example.easycloset.Queries;
 import com.example.easycloset.R;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -189,43 +193,25 @@ public class SuggestFragment extends Fragment {
         }
     }
 
-//    public void setupFacebookShare(Bitmap bitmap) {
-//        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.boots);
-//        ShareDialog shareDialog;
-//        FacebookSdk.sdkInitialize(getApplicationContext());
-//        shareDialog = new ShareDialog(this);
+    public void setupFacebookShare(Bitmap bitmap) {
+        ShareDialog shareDialog;
+        FacebookSdk.sdkInitialize(activity.getApplicationContext());
+        shareDialog = new ShareDialog(this);
+
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .setCaption("TESTING")
+                .build();
 //
-//        SharePhoto photo = new SharePhoto.Builder()
-//                .setBitmap(image)
-//                .setCaption("TESTING")
-//                .build();
-////
-////
-//        if (ShareDialog.canShow(SharePhotoContent.class)) {
-//            SharePhotoContent content = new SharePhotoContent.Builder()
-//                    .addPhoto(photo)
-//                    .build();
-//            ShareDialog.show(activity, content);
-//        }
+//
+        if (ShareDialog.canShow(SharePhotoContent.class)) {
+            SharePhotoContent content = new SharePhotoContent.Builder()
+                    .addPhoto(photo)
+                    .build();
+            ShareDialog.show(activity, content);
+        }
 
 
-//        if (ShareDialog.canShow(ShareLinkContent.class)) {
-//            ShareLinkContent content = new ShareLinkContent.Builder()
-//                    .setContentUrl(Uri.parse("https://developers.facebook.com"))
-//                    .setQuote("Connect on a global scale.")
-//                    .build();
-//
-//            shareDialog.show(content);
-//        }
-//
-//        ShareLinkContent linkContent = new ShareLinkContent.Builder()
-//                .setContentTitle("Title")
-//                .setContentDescription(
-//                        "\"Body Of Test Post\"")
-//                .setContentUrl(Uri.parse("http://facebook.com"))
-//                .build();
-//
-//        shareDialog.show(linkContent);
 
     private void takeScreenShot(View view) {
         Date date = new Date();

@@ -64,7 +64,7 @@ public class ClothesActivity extends AppCompatActivity {
     }
 
     public void fetchShoppingData(String gender, String item) {
-        String ApiSearch = "https://serpapi.com/search.json?q=" + gender + "+" + item + "+buy&location=Austin,+Texas,+United+States&hl=en&gl=us&api_key=6a846e9a7d4830674270838382f4ba7594a70e32bd441ac942d9f51ead70f3fa";
+        String ApiSearch = "https://serpapi.com/search.json?q=" + gender + "+" + item + "+buy&location=Austin,+Texas,+United+States&hl=en&gl=us&api_key=c378c610f455bddbc77ecc5457fc71d6637de8ef39c83c38e903a30212135552";
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(ApiSearch, new JsonHttpResponseHandler() {
             @Override

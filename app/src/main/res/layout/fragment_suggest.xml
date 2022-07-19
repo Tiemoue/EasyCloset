@@ -118,9 +118,9 @@
                 android:layout_marginBottom="10dp"
                 android:text="TOP"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                android:textAllCaps="true"
                 android:textStyle="bold" />
 
 
@@ -128,8 +128,8 @@
                 android:id="@+id/ivOuterLayer"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:clickable="true"
-                android:layout_marginStart="40dp" />
+                android:layout_marginStart="40dp"
+                android:clickable="true" />
 
 
             <TextView
@@ -140,8 +140,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/outer_layer"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -162,8 +162,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="BASE"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -173,8 +173,8 @@
                 android:id="@+id/ivBaseLayer"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:clickable="true"
-                android:layout_marginStart="70dp" />
+                android:layout_marginStart="70dp"
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/tvBaseLayer"
@@ -184,8 +184,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/base_layer"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -215,8 +215,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="BOTTOM"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -226,8 +226,8 @@
                 android:id="@+id/ivPants"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:clickable="true"
-                android:layout_marginStart="40dp" />
+                android:layout_marginStart="40dp"
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/tvBottomLayer"
@@ -237,8 +237,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/bottom_layer"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -259,8 +259,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="FEET"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -269,8 +269,8 @@
                 android:id="@+id/ivFeet"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:clickable="true"
-                android:layout_marginStart="70dp" />
+                android:layout_marginStart="70dp"
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/tvFeet"
@@ -280,8 +280,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/feet"
-                android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />

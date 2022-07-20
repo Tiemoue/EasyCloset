@@ -31,15 +31,16 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements UploadFragment.UploadFragmentInterface, HomeFragment.HomeFragmentInterface, ClosetFragment.ClosetFragmentInterface {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
-    private Constant constant;
+    private final Constant constant = new Constant();
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
-    private final ClosetFragment closetFragment = new ClosetFragment();
+    private final ClosetFragment closetFragment = new ClosetFragment(this);
     private final ProfileFragment profileFragment = new ProfileFragment();
     private final SuggestFragment suggestFragment = new SuggestFragment();
+    private final UploadFragment uploadFragment = new UploadFragment(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,33 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setFragmentContainer(Fragment fragment) {
+    @Override
+    public void switchToClosetFragment() {
+        setFragmentContainer(getClosetFragment());
+    }
+
+    @Override
+    public void switchToUploadFragment() {
+        setFragmentContainer(getUploadFragment());
+    }
+
+    public ClosetFragment getClosetFragment() {
+        return closetFragment;
+    }
+
+    private ProfileFragment getProfileFragment() {
+        return profileFragment;
+    }
+
+    private SuggestFragment getSuggestFragment() {
+        return suggestFragment;
+    }
+
+    public UploadFragment getUploadFragment() {
+        return uploadFragment;
+    }
+
+    public void setFragmentContainer(Fragment fragment) {
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
 

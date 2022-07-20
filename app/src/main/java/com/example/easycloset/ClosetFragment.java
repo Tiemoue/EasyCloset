@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,16 +22,22 @@ import java.util.List;
 
 public class ClosetFragment extends Fragment {
 
+    public interface ClosetFragmentInterface {
+        void switchToUploadFragment();
+
+        void closeApp();
+    }
+
     private ItemsAdapter adapter;
     private List<Item> allItems;
-    private MainActivity activity;
+    private ClosetFragmentInterface listener;
     private ProgressDialog progressDialog;
 
     public ClosetFragment() {
     }
 
-    public ClosetFragment(MainActivity mainActivity) {
-        activity = mainActivity;
+    public ClosetFragment(ClosetFragmentInterface listener) {
+        this.listener = listener;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -50,13 +57,20 @@ public class ClosetFragment extends Fragment {
         progressDialog.setTitle(getString(R.string.updating_closet));
         progressDialog.show();
         queryPosts();
+        Button btnAddClothes = view.findViewById(R.id.btAddClothes);
+        btnAddClothes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.switchToUploadFragment();
+            }
+        });
     }
 
-    private ItemsAdapter getAdapter() {
+    protected ItemsAdapter getAdapter() {
         return adapter;
     }
 
-    private List<Item> getAllItems() {
+    protected List<Item> getAllItems() {
         return allItems;
     }
 
@@ -67,7 +81,7 @@ public class ClosetFragment extends Fragment {
         query.findInBackground((items, e) -> {
             if (e != null) {
                 progressDialog.dismiss();
-                activity.closeApp();
+                listener.closeApp();
             }
             progressDialog.dismiss();
             // save received posts to list and notify adapter of new data

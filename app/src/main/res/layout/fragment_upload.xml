@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".UploadFragment">
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="147dp"
+        android:layout_height="83dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="626dp"
+        android:layout_marginEnd="252dp"
+        android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="37dp"
+        android:text="@string/take_picture"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/etColour"
+        android:layout_width="149dp"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="253dp"
+        android:backgroundTint="#009688"
+        android:hint="@string/enter_a_colour"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="275dp"
+        android:layout_height="274dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="73dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Spinner
+        android:id="@+id/spCategory"
+        android:layout_width="124dp"
+        android:layout_height="41dp"
+        android:layout_alignTop="@+id/etColour"
+        android:layout_alignBottom="@+id/etColour"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="229dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:backgroundTint="#FFFF"
+        android:layout_marginBottom="2dp" />
+
+    <Button
+        android:id="@+id/btCloset"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnUpload"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="1dp"
+        android:text="@string/back_to_closet" />
+
+</RelativeLayout>

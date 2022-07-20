@@ -32,18 +32,24 @@ import java.io.File;
 
 public class UploadFragment extends Fragment {
 
+    public interface UploadFragmentInterface {
+        void switchToClosetFragment();
+
+        ClosetFragment getClosetFragment();
+    }
+
     private Constant constant;
     private EditText etColour;
     private ImageView ivPicture;
     private File photoFile;
-    private MainActivity activity;
     private String category;
+    private UploadFragmentInterface listener;
 
     public UploadFragment() {
     }
 
-    public UploadFragment(MainActivity mainActivity) {
-        activity = mainActivity;
+    public UploadFragment(UploadFragmentInterface listener) {
+        this.listener = listener;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,7 +83,7 @@ public class UploadFragment extends Fragment {
 
         btnTakePicture.setOnClickListener(v -> launchCamera());
 
-        btnCloset.setOnClickListener(v -> activity.setFragmentContainer(activity.getClosetFragment()));
+        btnCloset.setOnClickListener(v -> listener.switchToClosetFragment());
 
         btnUpload.setOnClickListener(v -> {
             String colour = etColour.getText().toString();
@@ -152,9 +158,9 @@ public class UploadFragment extends Fragment {
                 etColour.setText("");
                 ivPicture.setImageResource(0);
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-                activity.getClosetFragment().getAllItems().add(0, item);
-                activity.getClosetFragment().getAdapter().notifyDataSetChanged();
-                activity.setFragmentContainer(activity.getClosetFragment());
+                listener.getClosetFragment().getAllItems().add(0, item);
+                listener.getClosetFragment().getAdapter().notifyDataSetChanged();
+                listener.switchToClosetFragment();
             }
         });
     }

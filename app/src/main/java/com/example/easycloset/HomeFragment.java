@@ -24,6 +24,10 @@ import okhttp3.Headers;
 
 public class HomeFragment extends Fragment {
 
+    public interface HomeFragmentInterface {
+        void closeApp();
+    }
+
     private Weather weather;
     private EditText etCity;
     private ImageButton btnSearch;
@@ -31,7 +35,7 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private double latitude;
     private double longitude;
-    private MainActivity activity;
+    private HomeFragmentInterface listener;
     private Boolean shouldFetch = false;
 
     public HomeFragment() {
@@ -45,8 +49,8 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public HomeFragment(MainActivity mainActivity) {
-        activity = mainActivity;
+    public HomeFragment(HomeFragmentInterface listener) {
+        this.listener = listener;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -120,9 +124,10 @@ public class HomeFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                activity.closeApp();
+                listener.closeApp();
             }
         });
     }

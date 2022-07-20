@@ -31,7 +31,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements UploadFragment.UploadFragmentInterface, HomeFragment.HomeFragmentInterface, ClosetFragment.ClosetFragmentInterface {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private final Constant constant = new Constant();
@@ -90,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void switchToClosetFragment() {
+        setFragmentContainer(getClosetFragment());
+    }
+
+    @Override
+    public void switchToUploadFragment() {
+        setFragmentContainer(getUploadFragment());
+    }
+
     public ClosetFragment getClosetFragment() {
         return closetFragment;
     }
@@ -109,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
     public void setFragmentContainer(Fragment fragment) {
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
     }
-
 
     private void logOutUser() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);

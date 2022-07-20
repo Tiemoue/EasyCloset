@@ -22,16 +22,22 @@ import java.util.List;
 
 public class ClosetFragment extends Fragment {
 
+    public interface ClosetFragmentInterface {
+        void switchToUploadFragment();
+
+        void closeApp();
+    }
+
     private ItemsAdapter adapter;
     private List<Item> allItems;
-    private MainActivity activity;
+    private ClosetFragmentInterface listener;
     private ProgressDialog progressDialog;
 
     public ClosetFragment() {
     }
 
-    public ClosetFragment(MainActivity mainActivity) {
-        activity = mainActivity;
+    public ClosetFragment(ClosetFragmentInterface listener) {
+        this.listener = listener;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -55,16 +61,16 @@ public class ClosetFragment extends Fragment {
         btnAddClothes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.setFragmentContainer(activity.getUploadFragment());
+                listener.switchToUploadFragment();
             }
         });
     }
 
-    public ItemsAdapter getAdapter() {
+    protected ItemsAdapter getAdapter() {
         return adapter;
     }
 
-    public List<Item> getAllItems() {
+    protected List<Item> getAllItems() {
         return allItems;
     }
 
@@ -75,7 +81,7 @@ public class ClosetFragment extends Fragment {
         query.findInBackground((items, e) -> {
             if (e != null) {
                 progressDialog.dismiss();
-                activity.closeApp();
+                listener.closeApp();
             }
             progressDialog.dismiss();
             // save received posts to list and notify adapter of new data

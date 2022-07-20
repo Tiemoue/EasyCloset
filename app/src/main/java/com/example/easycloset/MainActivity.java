@@ -104,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements UploadFragment.Up
         return closetFragment;
     }
 
-    public ProfileFragment getProfileFragment() {
+    private ProfileFragment getProfileFragment() {
         return profileFragment;
     }
 
-    public SuggestFragment getSuggestFragment() {
+    private SuggestFragment getSuggestFragment() {
         return suggestFragment;
     }
 

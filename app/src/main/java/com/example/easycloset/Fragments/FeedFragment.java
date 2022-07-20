@@ -1,21 +1,27 @@
 package com.example.easycloset.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.easycloset.Activities.MainActivity;
 import com.example.easycloset.R;
 
 public class FeedFragment extends Fragment {
 
+    MainActivity activity;
+
     public FeedFragment() {
         // Required empty public constructor
+    }
+
+    public FeedFragment(MainActivity mainActivity) {
+        activity = mainActivity;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

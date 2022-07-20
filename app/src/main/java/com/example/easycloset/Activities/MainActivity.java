@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.easycloset.Fragments.ClosetFragment;
+import com.example.easycloset.Fragments.FeedFragment;
 import com.example.easycloset.Fragments.HomeFragment;
 import com.example.easycloset.Fragments.ProfileFragment;
 import com.example.easycloset.Fragments.SuggestFragment;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private final ProfileFragment profileFragment = new ProfileFragment(this);
     private final SuggestFragment suggestFragment = new SuggestFragment(this);
     private final UploadFragment uploadFragment = new UploadFragment(this);
+    private final FeedFragment feedFragment  = new FeedFragment(this);
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
@@ -85,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.action_suggest:
                             fragment = suggestFragment;
+                            break;
+                        case R.id.action_feed:
+                            fragment = feedFragment;
                             break;
                         default:
                             fragment = profileFragment;

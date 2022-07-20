@@ -84,5 +84,10 @@
     <string name="slides">Slides</string>
     <string name="facebook_client_token">51da30ceff2e3f10938b49ebdcc81260</string>
     <string name="top_pick">Top Pick</string>
+    <string name="feed">Feed</string>
+    <string name="main">Main</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="closet">Closet</string>
+    <string name="profile">Profile</string>
 </resources>
 

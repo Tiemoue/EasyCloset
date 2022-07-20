@@ -55,7 +55,6 @@ public class SuggestFragment extends Fragment {
     private boolean shouldFetch = false;
     Queries queries;
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -238,7 +237,6 @@ public class SuggestFragment extends Fragment {
             String filePath = imageFile.getPath();
             Bitmap bitmap2 = BitmapFactory.decodeFile(filePath);
             setupFacebookShare(bitmap2);
-//            shareScreenShot(imageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

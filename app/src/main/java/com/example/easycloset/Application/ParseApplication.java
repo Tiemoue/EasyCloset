@@ -3,7 +3,7 @@ package com.example.easycloset.Application;
 import android.app.Application;
 
 import com.example.easycloset.Models.Item;
-import com.example.easycloset.Models.Suggest;
+import com.example.easycloset.Models.Post;
 import com.example.easycloset.Models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -14,6 +14,7 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ParseUser.registerSubclass(User.class);
+        ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Item.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("Ip3Oh4XMzgSUw2HLU5ZcpIBUgoCJU7MXlv8z09qY")

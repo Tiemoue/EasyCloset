@@ -191,7 +191,7 @@ public class ProfileFragment extends Fragment {
         String photoFileName = "photo.jpg";
         photoFile = getPhotoFileUri(photoFileName);
         // wrap File object into a content provider
-        Uri fileProvider = FileProvider.getUriForFile(requireContext(), "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(requireContext(), "com.codepath.fileprovider.easycloset", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.

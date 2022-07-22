@@ -32,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_upload"
+            android:src="@drawable/ic_baseline_camera_24"
             app:layout_anchor="@id/rvPosts"
+            android:backgroundTint="@color/colorAccent"
             app:layout_anchorGravity="bottom|right|end"
             tools:ignore="SpeakableTextPresentCheck" />
 

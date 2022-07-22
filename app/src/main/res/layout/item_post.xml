@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,45 +17,65 @@
             android:layout_height="50dp"
             android:layout_marginBottom="5dp" />
 
-
-        <TextView
-            android:id="@+id/tvUsername"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            tools:text="rahul" />
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="rahul" />
+
+            <TextView
+                android:id="@+id/postLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="location"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textSize="10sp" />
+        </LinearLayout>
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/ivpImage"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="370dp"
+        android:layout_marginBottom="10dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="5dp"
         android:textColor="@color/black"
+        android:textSize="15sp"
         tools:text="trying to look hipster" />
+
     <TextView
         android:id="@+id/tvCreatedAt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="10dp" />
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#201E1E" />
 </LinearLayout>

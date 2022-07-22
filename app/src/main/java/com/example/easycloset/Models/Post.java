@@ -7,9 +7,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -17,7 +15,7 @@ public class Post extends ParseObject {
     public static final String KEY_CAPTION = "caption";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
-    public static final String KEY_LIKED_BY = "liked_by";
+    public static final String KEY_LOCATION = "location";
 
     public String getCaption() {
         return getString(KEY_CAPTION);
@@ -39,17 +37,12 @@ public class Post extends ParseObject {
         return getParseUser(KEY_USER);
     }
 
-    public List<ParseUser> getLikedBy() {
-        List<ParseUser> likedby = getList(KEY_LIKED_BY);
-        if (likedby != null) {
-            return likedby;
-        } else {
-            return new ArrayList<ParseUser>();
-        }
+    public String getKeyLocation() {
+        return getString(KEY_LOCATION);
     }
 
-    public void setLikedBy(List<ParseUser> user) {
-        put(KEY_LIKED_BY, user);
+    public void setLocation(String location) {
+        put(KEY_LOCATION, location);
     }
 
     public void setUser(ParseUser user) {
@@ -91,37 +84,4 @@ public class Post extends ParseObject {
         return "";
     }
 
-    public String getLikesCount() {
-        int likeCount = getLikedBy().size();
-        return likeCount + (likeCount == 1 ? " likes" : " like");
-    }
-
-    public boolean isLikedByCurrentUser() {
-        List<ParseUser> likedBy = getLikedBy();
-        for (int i = 0; i < getLikedBy().size(); i++) {
-            if (likedBy.get(i).hasSameId(ParseUser.getCurrentUser())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void unlike() {
-        List<ParseUser> likedBy = getLikedBy();
-        for (int i = 0; i < getLikedBy().size(); i++) {
-            if (likedBy.get(i).hasSameId(ParseUser.getCurrentUser())) {
-                likedBy.remove(i);
-            }
-            setLikedBy(likedBy);
-            saveInBackground();
-        }
-    }
-
-    public void like() {
-        unlike();
-        List<ParseUser> likedby = getLikedBy();
-        likedby.add(ParseUser.getCurrentUser());
-        setLikedBy(likedby);
-        saveInBackground();
-    }
 }

@@ -64,8 +64,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView ivImage;
         private TextView tvDescription;
         private TextView tvCreatedAt;
-        private TextView tvLikes;
-        private ImageButton feedLikes;
+        private TextView location;
+
         private ImageView profile;
         public static final String KEY_PROFILE_IMAGE = "image";
 
@@ -76,6 +76,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             profile = itemView.findViewById(R.id.profile);
+            location = itemView.findViewById(R.id.postLocation);
         }
 
         public void bind(Post post) {
@@ -84,6 +85,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription.setText(post.getCaption());
             tvUsername.setText(post.getUser().getUsername());
             tvCreatedAt.setText(timeAgo);
+            location.setText(post.getKeyLocation());
             ParseFile profilePicture = post.getUser().getParseFile(KEY_PROFILE_IMAGE);
 
             ParseFile image = post.getImage();

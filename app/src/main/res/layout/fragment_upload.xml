@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".UploadFragment">
-
-    <Button
-        android:id="@+id/btnUpload"
-        android:layout_width="147dp"
-        android:layout_height="83dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="626dp"
-        android:layout_marginEnd="252dp"
-        android:text="@string/upload"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="2dp" />
+    tools:context=".Fragments.UploadFragment">
 
     <Button
         android:id="@+id/btnTakePicture"
@@ -47,7 +31,7 @@
         android:layout_marginStart="9dp"
         android:layout_marginTop="470dp"
         android:layout_marginEnd="253dp"
-        android:backgroundTint="#009688"
+        android:backgroundTint="@color/colorAccent"
         android:hint="@string/enter_a_colour"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
@@ -74,18 +58,32 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="229dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/white"
-        android:backgroundTint="#FFFF"
-        android:layout_marginBottom="2dp" />
+        android:backgroundTint="#FFFF" />
 
-    <Button
-        android:id="@+id/btCloset"
-        android:layout_width="129dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingUploadAction"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnUpload"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="1dp"
-        android:text="@string/back_to_closet" />
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="19dp"
+        android:backgroundTint="@color/colorAccent"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_upload"
+        tools:ignore="SpeakableTextPresentCheck" />
 
+    <ImageButton
+        android:id="@+id/btCloset"
+        android:layout_width="50dp"
+        android:layout_height="43dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="21dp"
+        android:background="@color/black"
+        android:src="@drawable/ic_baseline_arrow_back_24" />
 </RelativeLayout>

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Easy Closet</string>
     <string name="add_items_to_closet">Add items to Closet</string>
+    <string name="jackets">Jackets</string>
+    <string name="coats">Coats</string>
+    <string name="shirts">Shirts</string>
     <string name="suggest_fragment">Suggest fragment</string>
     <string name="enter_your_city_name">enter_your_city_name</string>
     <string name="humidity">Humidity</string>
@@ -13,13 +16,21 @@
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign Up</string>
+    <string name="pants">Pants</string>
+    <string name="sweaters">Sweaters</string>
+    <string name="hoodies">Hoodies</string>
+    <string name="joggers">Joggers</string>
+    <string name="shorts">Shorts</string>
+    <string name="boots">Boots</string>
+    <string name="sneakers">Sneakers</string>
+    <string name="slides">Slides</string>
+    <string name="headwears">Headwears</string>
     <string name="done">Done</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
     <string name="closet_fragment">Closet Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
     <string name="msg">Good Morning</string>
-    <string name="add_clothes">Add clothes</string>
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>
@@ -34,21 +45,59 @@
     <string name="colour">Colour:</string>
     <string name="category">Category:</string>
     <string name="date_added">Date Added:</string>
-    <string name="errorMsg">Unfortunately, Easy Closet Has Stopped</string>
-    <string name="ok">Ok</string>
-    <string name="updating_closet">Updating Closet...</string>
+    <string name="feet">FEET</string>
+    <string name="bottom_layer">BOTTOM LAYER</string>
+    <string name="base_layer">BASE LAYER</string>
+    <string name="outer_layer">OUTER LAYER</string>
+    <string name="not_found_foot">Recommended Foot wear not found</string>
+    <string name="bottom_not_found">Recommended Bottom Layer not found</string>
+    <string name="base_not_found">Recommended Base Layer not found</string>
+    <string name="outer_not_found">Recommended Outer Layer not found</string>
+    <string name="username_profile">Username :</string>
     <string-array name="category">
         <item>Pants</item>
-        <item>Sweaters</item>
-        <item>Hoodies</item>
+        <item>Sweater</item>
+        <item>Hoodie</item>
         <item>Joggers</item>
         <item>Shorts</item>
         <item>Boots</item>
         <item>Sneakers</item>
         <item>Slides</item>
-        <item>Jackets</item>
-        <item>Coats</item>
-        <item>T-shirts</item>
+        <item>Jacket</item>
+        <item>Coat</item>
+        <item>T-shirt</item>
     </string-array>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#00695C</color>
+    <color name="colorAccent">#FF5722</color>
+    <string name="login">Login</string>
+    <string name="e_mail">Email</string>
+    <string name="tag">Let\'s get you dressed</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+    <string name="swipe_left_for_register">swipe left for register</string>
+    <string name="_75f">75F</string>
+    <string name="todo">TODO</string>
+    <string name="coat">Coat</string>
+    <string name="jacket">Jacket</string>
+    <string name="sweater">Sweater</string>
+    <string name="hoodie">Hoodie</string>
+    <string name="t_shirt">T-shirt</string>
+    <string name="facebook_client_token">fb</string>
+    <string name="top_pick">Top Pick</string>
+    <string name="feed">Feed</string>
+    <string name="main">Main</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="closet">Closet</string>
+    <string name="profile">Profile</string>
+    <string name="not_available">NOT AVAILABLE</string>
+    <string name="google_maps_api_key">APIKEY</string>
+    <string name="weather_Api_key">apiKEy</string>
+    <string name="errorMsg">Unfortunately EasyCloset has stopped</string>
+    <string name="ok">OK</string>
+    <string name="seprei_api_key">apiKey</string>
+    <string name="facebook_app_id">fb id</string>
 </resources>
 

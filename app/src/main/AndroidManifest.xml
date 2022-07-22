@@ -3,13 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.easycloset">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider"
+            android:exported="false" />
+    </queries>
 
     <queries>
-
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -17,7 +24,7 @@
     </queries>
 
     <application
-        android:name=".ParseApplication"
+        android:name=".Application.ParseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,36 +35,61 @@
         android:theme="@style/Theme.EasyCloset"
         tools:targetApi="31">
         <activity
-            android:name=".ItemDetailActivity"
-            android:exported="false" />
+            android:name=".Activities.ClothesActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
+            android:name=".Activities.FirstActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+            android:name=".Activities.ItemDetailActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-
+            android:name=".Activities.MainActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.codepath.fileprovider"
+            android:authorities="com.codepath.fileprovider.easycloset"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
         </provider>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider4644553298981631"
+            android:exported="true"/>
         <activity
-            android:name=".SplashScreenActivity"
-            android:exported="true">
+            android:name=".Activities.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="true" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_api_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

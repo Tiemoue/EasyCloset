@@ -21,8 +21,8 @@ import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Post> posts;
+    private final Context context;
+    private final List<Post> posts;
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -59,13 +59,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvUsername;
-        private ImageView ivImage;
-        private TextView tvDescription;
-        private TextView tvCreatedAt;
-        private TextView location;
+        private final TextView tvUsername;
+        private final ImageView ivImage;
+        private final TextView tvDescription;
+        private final TextView tvCreatedAt;
+        private final TextView location;
 
-        private ImageView profile;
+        private final ImageView profile;
         public static final String KEY_PROFILE_IMAGE = "image";
 
         public ViewHolder(@NonNull View itemView) {

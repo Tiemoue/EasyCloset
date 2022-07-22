@@ -83,9 +83,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
                 }
             });
         }
-
     }
-
 }
 
 

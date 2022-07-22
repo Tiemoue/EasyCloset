@@ -38,11 +38,11 @@ import java.io.File;
 public class ComposeFragment extends Fragment {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
-    public static String TAG = ".FragmentCompose";
+    private static String TAG = ".FragmentCompose";
     private EditText etDescription;
     private ImageView ivPicture;
     private File photoFile;
-    public String photoFileName = "photo.jpg";
+    private String photoFileName = "photo.jpg";
     private final MainActivity activity;
 
     public ComposeFragment(MainActivity mainActivity) {

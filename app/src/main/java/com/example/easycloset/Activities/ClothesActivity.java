@@ -32,6 +32,7 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class ClothesActivity extends AppCompatActivity {
+
     private static final String TAG = ".ClothesActivity";
     private List<Clothes> clothesList;
     private ClothesAdapter clothesAdapter;

@@ -89,5 +89,6 @@
     <string name="suggestions">Suggestions</string>
     <string name="closet">Closet</string>
     <string name="profile">Profile</string>
+    <string name="not_available">NOT AVAILABLE</string>
 </resources>
 

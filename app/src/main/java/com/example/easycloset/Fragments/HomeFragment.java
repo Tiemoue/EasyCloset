@@ -89,8 +89,9 @@ public class HomeFragment extends Fragment {
         tvSunrise = view.findViewById(R.id.tvSunrises);
         tvSunset = view.findViewById(R.id.tvSunsets);
         view.findViewById(R.id.homeScreen);
+        String googleKey = String.valueOf(R.string.google_maps_api_key);
         if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), "AIzaSyB7riUUTq3f6SsaG5F9-_7VcU8y75YRp-Q");
+            Places.initialize(getApplicationContext(), googleKey);
         }
 
         // Create a new PlacesClient instance
@@ -144,7 +145,7 @@ public class HomeFragment extends Fragment {
 
     public void populateHomeFragment() {
         AsyncHttpClient client = new AsyncHttpClient();
-        String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + getLatitude() + "&lon=" + getLongitude() + "&units=imperial&appid=942dd77fa358eb3439a8212cb16724cd";
+        String apiByLat = "https://api.openweathermap.org/data/2.5/weather?lat=" + getLatitude() + "&lon=" + getLongitude() + "&units=imperial&appid=" + R.string.weather_Api_key;
 
         client.get(apiByLat, new JsonHttpResponseHandler() {
             @Override

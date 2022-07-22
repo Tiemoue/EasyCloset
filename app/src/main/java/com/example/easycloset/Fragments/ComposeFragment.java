@@ -40,20 +40,14 @@ public class ComposeFragment extends Fragment {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
     public static String TAG = ".FragmentCompose";
     private EditText etDescription;
-    private Button btnTakePicture;
-    private Button btnSubmit;
-    private Button btnLogOut;
     private ImageView ivPicture;
-    private Button btnFeed;
     private File photoFile;
     public String photoFileName = "photo.jpg";
-
-    MainActivity activity;
+    private final MainActivity activity;
 
     public ComposeFragment(MainActivity mainActivity) {
         activity = mainActivity;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,8 +60,8 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etDescription = view.findViewById(R.id.etDescription);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
-        btnTakePicture = view.findViewById(R.id.btnTakePicture);
+        Button btnSubmit = view.findViewById(R.id.btnSubmit);
+        Button btnTakePicture = view.findViewById(R.id.btnTakePicture);
         ivPicture = view.findViewById(R.id.ivPicture);
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override

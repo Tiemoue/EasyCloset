@@ -82,7 +82,7 @@ public class SearchFragment extends Fragment {
 
     public void fetchWeatherData() {
         AsyncHttpClient client = new AsyncHttpClient();
-        String apiByCity = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + "942dd77fa358eb3439a8212cb16724cd";
+        String apiByCity = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + R.string.weather_Api_key;
         client.get(apiByCity, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {

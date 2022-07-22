@@ -38,7 +38,7 @@ public class Queries {
     private final TextView tvFeet;
     private final TextView tvBottom;
     private final Context context;
-    private Suggest suggest = new Suggest();
+    private final Suggest suggest = new Suggest();
 
     public Queries(ImageView outerLayer, ImageView baseLayer, ImageView ivBottom, ImageView feet, TextView tvOuter, TextView tvBase, TextView tvBottom, TextView tvFeet, Context context) {
         this.outerLayer = outerLayer;
@@ -183,7 +183,7 @@ public class Queries {
         List<Clothes> clothes = new ArrayList<>();
         User user = (User) User.getCurrentUser();
         String gender = user.getKeyGender();
-        String ApiSearch = "https://serpapi.com/search.json?q=" + gender + "+" + item + "+buy&location=Austin,+Texas,+United+States&hl=en&gl=us&api_key=c378c610f455bddbc77ecc5457fc71d6637de8ef39c83c38e903a30212135552";
+        String ApiSearch = "https://serpapi.com/search.json?q=" + gender + "+" + item + "+buy&location=Austin,+Texas,+United+States&hl=en&gl=us&api_key=" + R.string.seprei_api_key;
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(ApiSearch, new JsonHttpResponseHandler() {
             @Override

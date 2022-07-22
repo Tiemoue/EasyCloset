@@ -1,13 +1,17 @@
 package com.example.easycloset.Fragments;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+import static com.parse.Parse.getApplicationContext;
+
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +23,20 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.easycloset.Activities.MainActivity;
 import com.example.easycloset.Models.Weather;
 import com.example.easycloset.R;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import okhttp3.Headers;
 
@@ -34,6 +49,10 @@ public class HomeFragment extends Fragment {
     private double latitude;
     private double longitude;
     MainActivity activity;
+    RelativeLayout searchbar;
+    AutocompleteSupportFragment autocompleteFragment;
+    private static int AUTOCOMPLETE_REQUEST_CODE = 1;
+    String place;
 
     public HomeFragment() {
     }
@@ -63,8 +82,6 @@ public class HomeFragment extends Fragment {
         progressDialog.setTitle("Fetching Weather...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        ImageButton btnSearch = view.findViewById(R.id.ivSearchBtn);
-        EditText etCity = view.findViewById(R.id.etYourCity);
         tvCity = view.findViewById(R.id.tvCity);
         tvCountry = view.findViewById(R.id.tvCountry);
         tvTemp = view.findViewById(R.id.tvTemp);
@@ -75,6 +92,32 @@ public class HomeFragment extends Fragment {
         tvSunrise = view.findViewById(R.id.tvSunrises);
         tvSunset = view.findViewById(R.id.tvSunsets);
         view.findViewById(R.id.homeScreen);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "AIzaSyB7riUUTq3f6SsaG5F9-_7VcU8y75YRp-Q");
+        }
+
+        // Create a new PlacesClient instance
+        PlacesClient placesClient = Places.createClient(requireContext());
+        autocompleteFragment = (AutocompleteSupportFragment)
+                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        assert autocompleteFragment != null;
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME)).setTypeFilter(TypeFilter.CITIES);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                Log.i("here", "Place: " + place.getName() + ", " + place.getId());
+                String location = place.getName();
+                goToSearchFragment(location);
+            }
+            @Override
+            public void onError(@NonNull Status status) {
+                Log.i("here", "An error occurred: " + status);
+            }
+        });
+        // Set the fields to specify which types of place data to
+        // return after the user has made a selection.
     }
 
     public void setWeather(Weather weather) {
@@ -127,11 +170,46 @@ public class HomeFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.e("response from server", "error");
             }
         });
     }
+
+    public void onPlaceBar() {
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = null;
+                if (data != null) {
+                    place = Autocomplete.getPlaceFromIntent(data);
+                }
+                Log.i("here", "Place: " + place.getName() + ", " + place.getId());
+                String location = place.getName();
+                goToSearchFragment(location);
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = null;
+                if (data != null) {
+                    status = Autocomplete.getStatusFromIntent(data);
+                }
+                Log.i("here", status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void goToSearchFragment(String place) {
+        activity.getSearchFragment().setLocation(place);
+        activity.setFragmentContainer(activity.getSearchFragment());
+    }
+
+
 }

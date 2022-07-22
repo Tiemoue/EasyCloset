@@ -49,9 +49,8 @@ import com.parse.ParseUser;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.HomeFragmentInterface, ClosetFragment.ClosetFragmentInterface, UploadFragment.UploadFragmentInterface {
+public class MainActivity extends AppCompatActivity implements HomeFragment.HomeFragmentInterface, UploadFragment.UploadFragmentInterface, ClosetFragment.ClosetFragmentInterface {
 
-    private final int REQUEST_LOCATION_PERMISSION = 1;
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final HomeFragment homeFragment = new HomeFragment(this);
     private final ClosetFragment closetFragment = new ClosetFragment(this);
@@ -209,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Home
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+        if (requestCode == constant.getREQUEST_LOCATION_PERMISSION()) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
                 startLocationUpdates();
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Home
     public void requestPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                REQUEST_LOCATION_PERMISSION);
+                constant.getREQUEST_LOCATION_PERMISSION());
     }
 
     public void closeApp() {

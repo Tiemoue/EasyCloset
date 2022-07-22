@@ -25,7 +25,7 @@ import java.util.List;
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
     private final Context context;
     private final List<Item> items;
-    private Constant constant = new Constant();
+    private final Constant constant = new Constant();
 
     public ItemsAdapter(Context context, List<Item> items) {
         this.context = context;

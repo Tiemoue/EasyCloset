@@ -43,14 +43,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends Fragment {
-    MainActivity activity;
-    TextView tvJacket, tvCoats, tvSweater, tvShirt, tvHodies, tvPants, tvJoggers, tvShorts, tvSneaker, tvBoots, tvSlides, tvItems, tvName;
-    int bootsCount, jacketCount, coatsCount, sweaterCount, hoodiesCount, shirtCount, pantsCount, joggerCount, sneakerCount, shortsCount, slidesCount, itemCount = 0;
-    TextView tvProfileCity;
-    CircleImageView ivProfileImg;
+    private MainActivity activity;
+    private TextView tvJacket, tvCoats, tvSweater, tvShirt, tvHodies, tvPants, tvJoggers, tvShorts, tvSneaker, tvBoots, tvSlides, tvItems, tvName;
+    private int bootsCount, jacketCount, coatsCount, sweaterCount, hoodiesCount, shirtCount, pantsCount, joggerCount, sneakerCount, shortsCount, slidesCount, itemCount = 0;
+    private TextView tvProfileCity;
+    private CircleImageView ivProfileImg;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
-    public static String TAG = ".CameraActivity";
-    Button button;
+    private static String TAG = ".CameraActivity";
     private File photoFile;
 
     public ProfileFragment() {

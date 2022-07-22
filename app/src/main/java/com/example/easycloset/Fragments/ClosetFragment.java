@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.easycloset.Activities.MainActivity;
 import com.example.easycloset.Adapters.ItemsAdapter;
 import com.example.easycloset.Models.Item;
 import com.example.easycloset.R;
@@ -30,13 +29,11 @@ public class ClosetFragment extends Fragment {
 
     public interface ClosetFragmentInterface {
         void switchToUploadFragment();
-
         void closeApp();
     }
 
     private ItemsAdapter adapter;
     private List<Item> allItems;
-    private MainActivity activity;
     private ProgressDialog progressDialog;
     private ClosetFragmentInterface listener;
 
@@ -47,16 +44,11 @@ public class ClosetFragment extends Fragment {
         this.listener = listener;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
-        queryPosts();
     }
 
-    public ClosetFragment(MainActivity mainActivity) {
-        activity = mainActivity;
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -30,8 +30,8 @@ public class SearchFragment extends Fragment {
     private String location;
     private TextView temp;
     private TextView des;
-    ImageView baseLayer, outerLayer, feet, pants;
-    TextView tvOuter, tvBase, tvFeet, tvBottom;
+    private ImageView baseLayer, outerLayer, feet, pants;
+    private TextView tvOuter, tvBase, tvFeet, tvBottom;
 
     public SearchFragment() {
         // Required empty public constructor

@@ -37,7 +37,6 @@ public class ClothesActivity extends AppCompatActivity {
     List<Clothes> clothesList;
     ClothesAdapter clothesAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

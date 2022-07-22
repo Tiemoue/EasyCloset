@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -28,6 +27,7 @@ import com.example.easycloset.Fragments.ComposeFragment;
 import com.example.easycloset.Fragments.FeedFragment;
 import com.example.easycloset.Fragments.HomeFragment;
 import com.example.easycloset.Fragments.ProfileFragment;
+import com.example.easycloset.Fragments.SearchFragment;
 import com.example.easycloset.Fragments.SuggestFragment;
 import com.example.easycloset.Fragments.UploadFragment;
 import com.example.easycloset.R;
@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private final ProfileFragment profileFragment = new ProfileFragment(this);
     private final SuggestFragment suggestFragment = new SuggestFragment(this);
     private final UploadFragment uploadFragment = new UploadFragment(this);
-    private final FeedFragment feedFragment  = new FeedFragment(this);
-    private final ComposeFragment composeFragment  = new ComposeFragment(this);
+    private final FeedFragment feedFragment = new FeedFragment(this);
+    private final ComposeFragment composeFragment = new ComposeFragment(this);
+    private final SearchFragment searchFragment = new SearchFragment(this);
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
@@ -128,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
 
     public FeedFragment getFeedFragment() {
         return feedFragment;
+    }
+
+    public SearchFragment getSearchFragment() {
+        return searchFragment;
     }
 
     public ComposeFragment getComposeFragment() {
@@ -235,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         shareDialog.registerCallback(callbackManager, callback);
     }
 
-    private FacebookCallback<Sharer.Result> callback = new FacebookCallback<Sharer.Result>() {
+    private final FacebookCallback<Sharer.Result> callback = new FacebookCallback<Sharer.Result>() {
         @Override
         public void onSuccess(Sharer.Result result) {
             Log.v("here", "Successfully posted");
@@ -254,5 +259,4 @@ public class MainActivity extends AppCompatActivity {
             // Write some code to do some operations when some error occurs while sharing content.
         }
     };
-
 }

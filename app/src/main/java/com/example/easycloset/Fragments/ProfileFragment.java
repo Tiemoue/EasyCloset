@@ -121,7 +121,7 @@ public class ProfileFragment extends Fragment {
             }
             reCount();
             itemCount = items.size();
-            tvItems.setText("Items " + String.valueOf(itemCount));
+            tvItems.setText("Items " + itemCount);
             for (Item item : items) {
                 if (item.getCategory().toLowerCase().equals("jacket")) {
                     jacketCount++;

@@ -60,7 +60,7 @@ public class Queries {
             multipleQueries("jacket", "hoodie", "joggers", "sneakers");
         } else if (temp < 60) {
             multipleQueries("hoodie", "sweater", "pants", "sneakers");
-        } else if (temp < 70) {
+        } else if (temp < 80) {
             multipleQueries("sweater", "t-shirt", "pants", "sneakers");
         } else {
             multipleQueries("sweater", "t-shirt", "shorts", "slides");
@@ -164,10 +164,10 @@ public class Queries {
                 getItem(foot, feet);
                 suggest.setFeet(foot);
             }
-            makeBtn(outerLayer, outer);
-            makeBtn(feet, foot);
-            makeBtn(ivBottom, bottom);
-            makeBtn(baseLayer, base);
+            imageClickListener(outerLayer, outer);
+            imageClickListener(feet, foot);
+            imageClickListener(ivBottom, bottom);
+            imageClickListener(baseLayer, base);
         });
     }
 
@@ -205,14 +205,14 @@ public class Queries {
         });
     }
 
-    public void startClothes(String item) {
+    public void startShoppingActivity(String item) {
         Intent intent = new Intent(context, ClothesActivity.class);
         intent.putExtra("category", item);
         context.startActivity(intent);
     }
 
-    public void makeBtn(ImageView outerLayer, String outer) {
-        outerLayer.setOnClickListener(v -> startClothes(outer));
+    public void imageClickListener(ImageView outerLayer, String outer) {
+        outerLayer.setOnClickListener(v -> startShoppingActivity(outer));
     }
 
     public Suggest getSuggest() {

@@ -48,11 +48,9 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private double latitude;
     private double longitude;
-    MainActivity activity;
-    RelativeLayout searchbar;
-    AutocompleteSupportFragment autocompleteFragment;
-    private static int AUTOCOMPLETE_REQUEST_CODE = 1;
-    String place;
+    private MainActivity activity;
+    private RelativeLayout searchbar;
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     public HomeFragment() {
     }
@@ -66,7 +64,6 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         populateHomeFragment();
-
     }
 
 
@@ -98,7 +95,7 @@ public class HomeFragment extends Fragment {
 
         // Create a new PlacesClient instance
         PlacesClient placesClient = Places.createClient(requireContext());
-        autocompleteFragment = (AutocompleteSupportFragment)
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         assert autocompleteFragment != null;
@@ -111,6 +108,7 @@ public class HomeFragment extends Fragment {
                 String location = place.getName();
                 goToSearchFragment(location);
             }
+
             @Override
             public void onError(@NonNull Status status) {
                 Log.i("here", "An error occurred: " + status);
@@ -170,14 +168,12 @@ public class HomeFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.e("response from server", "error");
             }
         });
-    }
-
-    public void onPlaceBar() {
     }
 
     @Override
@@ -192,7 +188,6 @@ public class HomeFragment extends Fragment {
                 String location = place.getName();
                 goToSearchFragment(location);
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                // TODO: Handle the error.
                 Status status = null;
                 if (data != null) {
                     status = Autocomplete.getStatusFromIntent(data);
@@ -210,6 +205,4 @@ public class HomeFragment extends Fragment {
         activity.getSearchFragment().setLocation(place);
         activity.setFragmentContainer(activity.getSearchFragment());
     }
-
-
 }

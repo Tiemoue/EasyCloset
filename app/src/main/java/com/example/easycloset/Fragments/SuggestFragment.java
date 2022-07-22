@@ -53,7 +53,7 @@ public class SuggestFragment extends Fragment {
     private ProgressDialog progressDialog;
     private Suggest suggestions = new Suggest();
     private boolean shouldFetch = false;
-    Queries queries;
+    private Queries queries;
 
     @Override
     public void onResume() {
@@ -126,16 +126,12 @@ public class SuggestFragment extends Fragment {
     }
 
     public void fetchData() {
-        queries.makeBtn(feet, suggestions.getFeet());
-        queries.makeBtn(outerLayer, suggestions.getOuter());
-        queries.makeBtn(baseLayer, suggestions.getBase());
-        queries.makeBtn(pants, suggestions.getBottom());
+        openShoppingActivity();
         if (suggestions.getOuterColor() != null) {
             Glide.with(requireContext()).load(suggestions.getOuterImgUrl()).into(outerLayer);
             queries.setText(tvOuter, suggestions.getOuterColor() + " " + suggestions.getOuter());
         } else {
             queries.getItem(suggestions.getOuter(), outerLayer);
-            queries.setText(tvOuter, "Not Available");
         }
 
         if (suggestions.getBaseColor() != null) {
@@ -143,7 +139,7 @@ public class SuggestFragment extends Fragment {
             queries.setText(tvBase, suggestions.getBaseColor() + " " + suggestions.getBase());
         } else {
             queries.getItem(suggestions.getBase(), baseLayer);
-            queries.setText(tvBase, "Not Available");
+
         }
 
         if (suggestions.getBottomColor() != null) {
@@ -151,7 +147,7 @@ public class SuggestFragment extends Fragment {
             queries.setText(tvBottom, suggestions.getBottomColor() + " " + suggestions.getBottom());
         } else {
             queries.getItem(suggestions.getBottom(), pants);
-            queries.setText(tvBottom, "Not Available");
+
         }
 
         if (suggestions.getFeetColor() != null) {
@@ -159,7 +155,7 @@ public class SuggestFragment extends Fragment {
             queries.setText(tvFeet, suggestions.getFeetColor() + " " + suggestions.getFeet());
         } else {
             queries.getItem(suggestions.getFeet(), feet);
-            queries.setText(tvFeet, "Not Available");
+
         }
     }
 
@@ -195,6 +191,12 @@ public class SuggestFragment extends Fragment {
         }
     }
 
+    public void openShoppingActivity() {
+        queries.imageClickListener(feet, suggestions.getFeet());
+        queries.imageClickListener(outerLayer, suggestions.getOuter());
+        queries.imageClickListener(baseLayer, suggestions.getBase());
+        queries.imageClickListener(pants, suggestions.getBottom());
+    }
 
     public void setupFacebookShare(Bitmap bitmap) {
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -247,7 +249,7 @@ public class SuggestFragment extends Fragment {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("image/*");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Download Application from Instagram");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Recommedations by EasyCloset");
         intent.putExtra(Intent.EXTRA_STREAM, uri);
 
         Intent chooser = Intent.createChooser(intent, "Share File");
